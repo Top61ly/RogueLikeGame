@@ -12,7 +12,7 @@ namespace BulletsGenerator
 
         public BulletsWave[] bulletsWaveCollected = new BulletsWave[0];
 
-        private bool isCoroutineOver = false;
+        private bool isCoroutineOver = true;
 
         private Animator animator;
 
@@ -23,10 +23,8 @@ namespace BulletsGenerator
             {
                 bulletsWaveCollected[i].Init();
             }
-            StartCoroutine(GenerateWaves());
         }
-
-
+        
 
         public void Shoot()
         {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class Room
 {
     public float tileSize;
@@ -9,6 +10,7 @@ public class Room
     public int roomHeight;                    // How many tiles high the room is.
     public Direction enteringCorridor;    // The direction of the corridor that is entering this room.
 
+    public Boundary boundary;
 
     // This is used for the first room.  It does not have a Corridor parameter since there are no corridors yet.
     public void SetupRoom(IntRange widthRange, IntRange heightRange, int columns, int rows)
@@ -20,6 +22,9 @@ public class Room
         // Set the x and y coordinates so the room is roughly in the middle of the board.
         xPos = Mathf.RoundToInt(columns / 2f - roomWidth / 2f);
         yPos = Mathf.RoundToInt(rows / 2f - roomHeight / 2f);
+
+        boundary.minX = xPos - roomWidth / 2;boundary.maxX = xPos + roomWidth / 2;
+        boundary.minY = yPos - roomHeight / 2;boundary.maxY = yPos + roomHeight / 2;
     }
 
 

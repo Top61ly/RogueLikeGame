@@ -20,7 +20,7 @@ namespace BulletsGenerator
             for (int i = 0; i<numOfWave;i++)
             {
                 GameObject go = Instantiate(bullet, transform.position, Quaternion.identity);
-                Vector2 direction = _playerTransform.position - transform.position;
+                Vector2 direction = (_playerTransform.position - transform.position).normalized;
                 go.GetComponent<Rigidbody2D>().AddForce(direction * speed);
             }
         }
