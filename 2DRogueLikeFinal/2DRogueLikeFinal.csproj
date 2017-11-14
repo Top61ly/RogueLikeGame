@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoardCreater\BoardCreator.cs" />
     <Compile Include="Assets\Scripts\BoardCreater\Corridor.cs" />
+    <Compile Include="Assets\Scripts\BoardCreater\FloatRange.cs" />
     <Compile Include="Assets\Scripts\BoardCreater\IntRange.cs" />
     <Compile Include="Assets\Scripts\BoardCreater\Room.cs" />
     <Compile Include="Assets\Scripts\BulletsGenerator\MonoBehavior\BulletsAttack.cs" />

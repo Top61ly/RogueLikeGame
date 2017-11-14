@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        GenerateEnemies();
+      //  GenerateEnemies();
     }
 
     private void GenerateEnemies()

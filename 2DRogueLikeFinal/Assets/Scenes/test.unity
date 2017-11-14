@@ -877,6 +877,51 @@ Prefab:
       propertyPath: bulletsWaveCollected.Array.data[0]
       value: 
       objectReference: {fileID: 1053043071}
+    - target: {fileID: 114642282041701756, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: actionRandom.m_Max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642282041701756, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: moveRange.m_Min
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642282041701756, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: moveRange.m_Max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642282041701756, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: thinkTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642282041701756, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 58005471815079932, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50942912526875388, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50942912526875388, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50942912526875388, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f,
+        type: 2}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f, type: 2}
   m_IsPrefabParent: 0

@@ -5,69 +5,86 @@ using UnityEngine;
 public enum EnemyState
 {
     Idle,
-    Chasing,
-    Attacking
+    Chasing
 }
 
 public class EnemyMovement : MonoBehaviour,IAiMove
-{
-    public float chaseRange;
-
-    public float attackRange;
-
+{    
     public float moveSpeed;
 
     public float slowSmooth;
 
-    private EnemyState enemyState;
-    private BulletsGenerator.BulletsAttack bulletsAttack;
+    public IntRange actionRandom;
+    public FloatRange moveRange;
+    private Vector3 destination;
 
-    private Transform player;
+    public float thinkTime;
+
+    public EnemyState enemyState;
+
+    private bool isWalking = false;
+    private bool isFacingRight = false;
+
     private Animator animator;
     private Rigidbody2D rigidBody2D;
+    private Transform player;
        
-	void Start ()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        bulletsAttack = GetComponent<BulletsGenerator.BulletsAttack>();
+	void Awake ()
+    {       
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
 	}
-	
-	void Update ()
-    {
-        UpdateState();
-        DoActionByState(enemyState);		
-	}
 
-    void UpdateState()
+    private void Start()
     {
-        float range = (player.position - transform.position).magnitude;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        StartCoroutine(UpdateState());
+    }
 
-        if (range > chaseRange)
-            enemyState = EnemyState.Idle;
-        else if (range > attackRange)
-            enemyState = EnemyState.Chasing;
-        else
-            enemyState = EnemyState.Attacking;
+    void Update ()
+    {
+        Turn();
+        DoActionByState(enemyState);
+    }
+
+    private void Turn()
+    {
+        float h = player.position.x - transform.position.x;
+        if (h > 0 && !isFacingRight)
+            Flip();
+        else if (h < 0 && isFacingRight)
+            Flip();
+    }
+
+
+    private IEnumerator UpdateState()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(thinkTime);
+            if (!isWalking)
+            {
+                var actionIndex = actionRandom.Random;
+                enemyState = (EnemyState)actionIndex;
+                switch (enemyState)
+                {
+                    case EnemyState.Idle:
+                        Idle();
+                        break;
+                    case EnemyState.Chasing:
+                        if (!isWalking)
+                            StartCoroutine(AiMove());
+                        break;
+                    default:
+                        break;
+                }       
+        
+            }
+        }
     }
 
     void DoActionByState(EnemyState enemystate)
     {
-        switch (enemystate)
-        {
-            case EnemyState.Idle:
-                Idle();
-                break;
-            case EnemyState.Chasing:
-                AiMove();
-                break;
-            case EnemyState.Attacking:
-                Attack();
-                break;
-            default:
-                break;
-        }       
     }
 
     private void Idle()
@@ -76,16 +93,41 @@ public class EnemyMovement : MonoBehaviour,IAiMove
         rigidBody2D.velocity = Vector2.Lerp(rigidBody2D.velocity, Vector2.zero, slowSmooth * Time.deltaTime);
     }
 
-    public void AiMove()
+    public IEnumerator AiMove()
     {
         animator.SetBool("isWalking", true);
-        Vector3 direction = (player.position-transform.position).normalized;
-        rigidBody2D.MovePosition(transform.position + direction * moveSpeed * Time.deltaTime);
+
+        isWalking = true;
+        CreateMovePosition();
+        float step = (moveSpeed / (destination - transform.position).magnitude) * Time.deltaTime;
+        float t = 0;
+        while (t<=1f)
+        {
+            t += step;
+            Vector3 dest = Vector3.Lerp(transform.position, destination, t);
+            rigidBody2D.MovePosition(dest);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        transform.position = destination;
+        isWalking = false;   
     }
 
-    private void Attack()
+    private void CreateMovePosition()
     {
-        animator.SetTrigger("Attack");
-        rigidBody2D.velocity = Vector2.Lerp(rigidBody2D.velocity, Vector2.zero, slowSmooth * Time.deltaTime);
+
+        float x = transform.position.x + moveRange.Random;
+        float y = transform.position.y + moveRange.Random;
+
+        destination = new Vector3(x, y, 0);
+
+        isWalking = true;
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 myScale = transform.localScale;
+        myScale.x *= -1;
+        transform.localScale = myScale;
     }
 }

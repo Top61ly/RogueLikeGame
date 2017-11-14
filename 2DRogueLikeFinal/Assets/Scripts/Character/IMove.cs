@@ -3,5 +3,5 @@ using System.Collections.Generic;
 
 public interface IAiMove
 {
-    void AiMove();
+    IEnumerator AiMove();
 }
