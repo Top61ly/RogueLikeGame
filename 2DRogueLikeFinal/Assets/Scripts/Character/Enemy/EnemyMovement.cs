@@ -4,7 +4,6 @@ using UnityEngine;
 
 public enum EnemyState
 {
-    Idle,
     Chasing,
     Attacking
 }
@@ -30,23 +29,25 @@ public class EnemyMovement : MonoBehaviour,IAiMove
     private Animator animator;
     private Rigidbody2D rigidBody2D;
     private Transform player;
+    private CircleCollider2D circleCollider2D;
        
 	void Awake ()
     {       
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
+        circleCollider2D = GetComponent<CircleCollider2D>();
 	}
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        CreateMovePosition();
         StartCoroutine(UpdateState());
     }
 
     void Update ()
     {
         Turn();
-        DoActionByState(enemyState);
     }
 
     private void Turn()
@@ -69,10 +70,7 @@ public class EnemyMovement : MonoBehaviour,IAiMove
                 var actionIndex = actionRandom.Random;
                 enemyState = (EnemyState)actionIndex;
                 switch (enemyState)
-                {
-                    case EnemyState.Idle:
-                        Idle();
-                        break;
+                {                    
                     case EnemyState.Chasing:
                         if (!isWalking)
                             StartCoroutine(AiMove());
@@ -88,24 +86,14 @@ public class EnemyMovement : MonoBehaviour,IAiMove
         }
     }
 
-    void DoActionByState(EnemyState enemystate)
-    {
-    }
-
-    private void Idle()
-    {
-        animator.SetBool("isWalking", false);
-        rigidBody2D.velocity = Vector2.Lerp(rigidBody2D.velocity, Vector2.zero, slowSmooth * Time.deltaTime);
-    }
-
     public IEnumerator AiMove()
     {
         animator.SetBool("isWalking", true);
 
         isWalking = true;
-        for (int i = 0; i < 2; i++)
-        {
+       
             CreateMovePosition();
+        Debug.Log("Start");
             float step = (moveSpeed / (destination - transform.position).magnitude) * Time.deltaTime;
             var startposition = transform.position;
             float t = 0;
@@ -117,7 +105,7 @@ public class EnemyMovement : MonoBehaviour,IAiMove
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             transform.position = destination;
-        }
+        
         isWalking = false;
         animator.SetBool("isWalking", false);
     }
@@ -134,12 +122,27 @@ public class EnemyMovement : MonoBehaviour,IAiMove
     private void CreateMovePosition()
     {
 
-        float x = transform.position.x + moveRange.Random;
-        float y = transform.position.y + moveRange.Random;
+        float x = moveRange.Random;
+        float y = moveRange.Random;
 
-        destination = new Vector3(x, y, 0);
+        Vector2 movement = new Vector2(x, y);
 
-        isWalking = true;
+        int a = 1<< LayerMask.NameToLayer("Environment");
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, movement,Mathf.Infinity,a);
+
+        if ( hit.collider != null)
+        {
+            Debug.Log(hit.collider.transform.name);
+            float distance = (hit.point - rigidBody2D.position).magnitude;
+            if (distance < movement.magnitude)
+                CreateMovePosition();
+            else
+                destination = rigidBody2D.position + movement;
+        }
+        else        
+            destination = rigidBody2D.position + movement;        
+        
     }
 
     private void Flip()
@@ -148,11 +151,5 @@ public class EnemyMovement : MonoBehaviour,IAiMove
         Vector3 myScale = transform.localScale;
         myScale.x *= -1;
         transform.localScale = myScale;
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        rigidBody2D.velocity = -rigidBody2D.velocity;
-        Debug.Log(rigidBody2D.velocity);  
     }
 }
