@@ -17,16 +17,20 @@ public class PlayerAttack : MonoBehaviour
     public float timerGap = 1f;
 
     private float timer = 0;
+
+    private PlayerWeaponControl playerWeaponControl;
     private BulletsGenerator.BulletsAttack bulletsAttack;
 
     private float effectDisplayTime = 0.2f;
     public SpriteRenderer gunEffect;
 
-
+    //Weapon Control
+    private bool isWeaponInRange;
 
     private void Awake()
     {
-        playerMovement = GetComponentInChildren<PlayerMovement>();
+        playerWeaponControl = GetComponent<PlayerWeaponControl>();
+        playerMovement = GetComponent<PlayerMovement>();
         bulletsAttack = GetComponentInChildren<BulletsGenerator.BulletsAttack>();
     }
 
@@ -41,24 +45,21 @@ public class PlayerAttack : MonoBehaviour
         //Update Gun Transform
         colliderEnemiesList = Physics2D.OverlapCircleAll(transform.position, checkRange, enemyLayerMask).ToList<Collider2D>();
 
-        gun.localRotation = GetTarget();
+        if (gun)
+            gun.localRotation = GetTarget();
 
         //Shoot Control
         timer += Time.deltaTime;
 
-
         if (Input.GetMouseButton(0) && timer >= timerGap && Time.timeScale != 0)
-
             Shoot();
-        
+                
         if (timer >= timerGap * effectDisplayTime)
-
             DisableEffect();
 
-        //Weapon Control
+        //
         if (Input.GetKeyDown(KeyCode.E))
             ChangeWeapon();
-
     }
 
     void Shoot()
@@ -108,5 +109,21 @@ public class PlayerAttack : MonoBehaviour
     void ChangeWeapon()
     {
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon"))
+        {
+            isWeaponInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon"))
+        {
+            isWeaponInRange = false;
+        }
     }
 }
