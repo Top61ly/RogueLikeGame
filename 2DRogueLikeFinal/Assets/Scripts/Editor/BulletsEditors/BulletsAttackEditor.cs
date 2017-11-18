@@ -7,12 +7,12 @@ using System;
 namespace BulletsGenerator
 {
     [CustomEditor(typeof(BulletsAttack))]
-    public class BossEditor : 
+    public class  BulletsAttackEditor : 
         EditorWithSubEditors<BulletsWaveEditor,BulletsWave>
     {
         private BulletsAttack BulletsAttack;
 
-        private SerializedProperty bossLocationProperty;
+        private SerializedProperty bossLocationProperty;    
         private SerializedProperty bossProperty;
 
         private const float bulletsWaveButtonWidth = 125f;

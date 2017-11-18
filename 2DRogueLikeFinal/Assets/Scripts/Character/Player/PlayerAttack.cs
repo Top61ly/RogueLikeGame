@@ -10,8 +10,9 @@ public class PlayerAttack : MonoBehaviour
     //Check Enemey   
     public float checkRange;
 
+    public Transform gun;
     public int enemyLayerMask;
-    public List<Collider2D> colliderEnemiesList;
+    private List<Collider2D> colliderEnemiesList;
     //Control the shoot
     public float timerGap = 1f;
 
@@ -40,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
         //Update Gun Transform
         colliderEnemiesList = Physics2D.OverlapCircleAll(transform.position, checkRange, enemyLayerMask).ToList<Collider2D>();
 
-       // transform.rotation = GetTarget();
+        gun.localRotation = GetTarget();
 
         //Shoot Control
         timer += Time.deltaTime;
@@ -49,10 +50,15 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButton(0) && timer >= timerGap && Time.timeScale != 0)
 
             Shoot();
-
+        
         if (timer >= timerGap * effectDisplayTime)
 
             DisableEffect();
+
+        //Weapon Control
+        if (Input.GetKeyDown(KeyCode.E))
+            ChangeWeapon();
+
     }
 
     void Shoot()
@@ -70,26 +76,37 @@ public class PlayerAttack : MonoBehaviour
     Quaternion GetTarget()
     {
         int allNotDefaultlayer = ~(1 << LayerMask.NameToLayer("Default"));
+
+        float x = Mathf.Abs(playerMovement.movement.x);
+        float y = playerMovement.movement.y;
+
+        float angle = Mathf.Atan2(y, x)*Mathf.Rad2Deg;
         
-        Quaternion result = Quaternion.Euler(playerMovement.movement);
-        float distance = 0;
+        Quaternion result = Quaternion.AngleAxis(angle,new Vector3(0,0,1));
 
 
-        foreach (Collider2D collider in colliderEnemiesList)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, collider.transform.position - transform.position, allNotDefaultlayer);
-            if (hit.collider != null && hit.collider == collider)
-                continue;
-            else
-                colliderEnemiesList.Remove(collider);
-        }
+        //float distance = 0;
+        
+        //foreach (Collider2D collider in colliderEnemiesList)
+        //{
+        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, collider.transform.position - transform.position, allNotDefaultlayer);
+        //    if (hit.collider != null && hit.collider == collider)
+        //        continue;
+        //    else
+        //        colliderEnemiesList.Remove(collider);
+        //}
 
-        foreach (Collider2D collider in colliderEnemiesList)
-        {
-            if ((collider.transform.position - transform.position).magnitude > distance)
-                result = Quaternion.Euler((collider.transform.position - transform.position).normalized);
-        }
+        //foreach (Collider2D collider in colliderEnemiesList)
+        //{
+        //    if ((collider.transform.position - transform.position).magnitude > distance)
+        //        result = Quaternion.Euler((collider.transform.position - transform.position).normalized);
+        //}
 
         return result;
+    }
+
+    void ChangeWeapon()
+    {
+
     }
 }
