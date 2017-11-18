@@ -8,7 +8,7 @@ public class EnemyBullets : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Enemy"))
+        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Gun"))
         {
             if (collision.CompareTag("Player"))
 

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
-    private Vector2 movement;
+    public Vector2 movement;
 
     private bool isFacingRight = true;   
 

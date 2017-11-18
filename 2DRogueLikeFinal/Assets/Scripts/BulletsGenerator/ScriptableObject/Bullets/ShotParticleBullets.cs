@@ -14,12 +14,12 @@ namespace BulletsGenerator
         
         protected override void ImmediateShoot(Transform transform)
         {
-            Quaternion startQuaternion = bullet.transform.rotation * Quaternion.Euler(0, 0, -(numOfWidth-1) * offset / 2);
+            Quaternion startQuaternion = transform.rotation * Quaternion.Euler(0, 0, -(numOfWidth-1) * offset / 2);
             for (int i = 0; i<numOfWidth;i++)
             {
                 GameObject go = Instantiate(bullet, transform.position, startQuaternion,transform) as GameObject;
                 startQuaternion *= Quaternion.Euler(0, 0, offset);
-                go.GetComponent<Rigidbody2D>().AddForce(-go.transform.up * speed);
+                go.GetComponent<Rigidbody2D>().AddForce(go.transform.right * speed);
             }   
         }
     }

@@ -91,21 +91,20 @@ public class EnemyMovement : MonoBehaviour,IAiMove
         animator.SetBool("isWalking", true);
 
         isWalking = true;
-       
-            CreateMovePosition();
-        Debug.Log("Start");
-            float step = (moveSpeed / (destination - transform.position).magnitude) * Time.deltaTime;
-            var startposition = transform.position;
-            float t = 0;
-            while (t <= 1f)
-            {
-                t += step;
-                Vector3 dest = Vector3.Lerp(startposition, destination, t);
-                rigidBody2D.MovePosition(dest);
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-            transform.position = destination;
-        
+             
+        CreateMovePosition();
+
+        float step = (moveSpeed / (destination - transform.position).magnitude) * Time.deltaTime;
+        var startposition = transform.position;
+        float t = 0;
+        while (t <= 1f)
+        {
+            t += step;
+            Vector3 dest = Vector3.Lerp(startposition, destination, t);
+            rigidBody2D.MovePosition(dest);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        transform.position = destination;        
         isWalking = false;
         animator.SetBool("isWalking", false);
     }
@@ -133,7 +132,6 @@ public class EnemyMovement : MonoBehaviour,IAiMove
 
         if ( hit.collider != null)
         {
-            Debug.Log(hit.collider.transform.name);
             float distance = (hit.point - rigidBody2D.position).magnitude;
             if (distance < movement.magnitude)
                 CreateMovePosition();

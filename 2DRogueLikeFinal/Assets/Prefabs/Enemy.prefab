@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  bulletsAttack: {fileID: 4917465110894714}
+  startPosition: {fileID: 4917465110894714}
   bulletsWaveCollected:
   - {fileID: 0}
 --- !u!114 &114642282041701756
