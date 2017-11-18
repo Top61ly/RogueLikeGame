@@ -8,11 +8,9 @@ namespace BulletsGenerator
     {
         public int health = 100;
 
-        public Transform bulletsAttack;
+        public Transform startPosition;
 
         public BulletsWave[] bulletsWaveCollected = new BulletsWave[0];
-
-        private bool isCoroutineOver = true;
 
         private Animator animator;
 
@@ -28,18 +26,14 @@ namespace BulletsGenerator
 
         public void Shoot()
         {
-            if (isCoroutineOver)           
-                StartCoroutine(GenerateWaves());
-                       
+            StartCoroutine(GenerateWaves());              
         }
 
         IEnumerator GenerateWaves()
         {
-            isCoroutineOver = false;
             int index = Random.Range(0, bulletsWaveCollected.Length);
-            bulletsWaveCollected[index].Shoot(this, transform);
+            bulletsWaveCollected[index].Shoot(this, startPosition);
             yield return new WaitForSeconds(bulletsWaveCollected[index].time);
-            isCoroutineOver = true;
         }
 
     }

@@ -17,7 +17,7 @@ namespace BulletsGenerator
 
         private const float bulletsWaveButtonWidth = 125f;
 
-        private const string bossPropName = "bulletsAttack";
+        private const string bossPropName = "startPosition";
         private const string bossPropBulletsWaveName = "bulletsWaveCollected";
 
         private void OnEnable()

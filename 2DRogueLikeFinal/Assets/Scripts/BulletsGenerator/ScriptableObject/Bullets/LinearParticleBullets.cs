@@ -23,7 +23,7 @@ namespace BulletsGenerator
             {
                 GameObject go = Instantiate(bullet, new Vector3(startPosition.x, startPosition.y, startPosition.z), Quaternion.identity, transform) as GameObject;
                 startPosition.x += offset;
-                go.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * speed);
+                go.GetComponent<Rigidbody2D>().AddForce(-Vector2.left * speed);
             }
         }
     }
