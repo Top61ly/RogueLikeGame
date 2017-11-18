@@ -26,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
 
     //Weapon Control
     private bool isWeaponInRange;
+    private GameObject weaponWait;
 
     private void Awake()
     {
@@ -108,7 +109,10 @@ public class PlayerAttack : MonoBehaviour
 
     void ChangeWeapon()
     {
-
+        gun.parent = null;
+        gun.rotation = Quaternion.identity;
+        gun = null;
+        gunEffect = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -116,6 +120,7 @@ public class PlayerAttack : MonoBehaviour
         if (collision.CompareTag("Weapon"))
         {
             isWeaponInRange = true;
+            weaponWait = collision.gameObject;
         }
     }
 
@@ -124,6 +129,7 @@ public class PlayerAttack : MonoBehaviour
         if (collision.CompareTag("Weapon"))
         {
             isWeaponInRange = false;
+            weaponWait = collision.gameObject;
         }
     }
 }
