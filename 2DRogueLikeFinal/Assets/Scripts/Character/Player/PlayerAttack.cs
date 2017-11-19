@@ -26,7 +26,8 @@ public class PlayerAttack : MonoBehaviour
 
     //Weapon Control
     private bool isWeaponInRange;
-    private GameObject weaponWait;
+    private Transform weaponPoint;
+    public Transform weaponWait;
 
     private void Awake()
     {
@@ -37,14 +38,15 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        enemyLayerMask =1<<LayerMask.NameToLayer("Enemy");
+        weaponPoint = transform.Find("WeaponPoint");
+       // enemyLayerMask =1<<LayerMask.NameToLayer("Enemy");
         DisableEffect();
     }
 
     void Update()
     {
         //Update Gun Transform
-        colliderEnemiesList = Physics2D.OverlapCircleAll(transform.position, checkRange, enemyLayerMask).ToList<Collider2D>();
+       // colliderEnemiesList = Physics2D.OverlapCircleAll(transform.position, checkRange, enemyLayerMask).ToList<Collider2D>();
 
         if (gun)
             gun.localRotation = GetTarget();
@@ -72,7 +74,8 @@ public class PlayerAttack : MonoBehaviour
 
     void DisableEffect()
     {
-        gunEffect.enabled = false;
+        if (gunEffect)
+            gunEffect.enabled = false;
     }
 
     Quaternion GetTarget()
@@ -111,16 +114,20 @@ public class PlayerAttack : MonoBehaviour
     {
         gun.parent = null;
         gun.rotation = Quaternion.identity;
+        gun.position = Vector3.zero;
         gun = null;
-        gunEffect = null;
+            
+        
+        gunEffect = weaponWait.Find("GunEffect").GetComponent<SpriteRenderer>();
+         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Weapon"))
         {
             isWeaponInRange = true;
-            weaponWait = collision.gameObject;
+            weaponWait = collision.transform;
         }
     }
 
@@ -129,7 +136,7 @@ public class PlayerAttack : MonoBehaviour
         if (collision.CompareTag("Weapon"))
         {
             isWeaponInRange = false;
-            weaponWait = collision.gameObject;
+            weaponWait = null;
         }
     }
 }
