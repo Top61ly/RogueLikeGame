@@ -8,7 +8,7 @@ public enum EnemyState
     Attacking
 }
 
-public class EnemyMovement : MonoBehaviour,IAiMove
+public class EnemyMovement : MonoBehaviour
 {    
     public float moveSpeed;
 
@@ -29,10 +29,12 @@ public class EnemyMovement : MonoBehaviour,IAiMove
     private Animator animator;
     private Rigidbody2D rigidBody2D;
     private Transform player;
+    private SpriteRenderer spriteRenderer;
     private CircleCollider2D circleCollider2D;
        
 	void Awake ()
-    {       
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>(); 
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         circleCollider2D = GetComponent<CircleCollider2D>();
@@ -86,7 +88,7 @@ public class EnemyMovement : MonoBehaviour,IAiMove
         }
     }
 
-    public IEnumerator AiMove()
+    private IEnumerator AiMove()
     {
         animator.SetBool("isWalking", true);
 
@@ -109,13 +111,47 @@ public class EnemyMovement : MonoBehaviour,IAiMove
         animator.SetBool("isWalking", false);
     }
 
-    public IEnumerator Attack()
+    private IEnumerator Attack()
     {
         isAttacking = true;
         animator.SetTrigger("Attack");
         rigidBody2D.velocity = Vector2.zero;
         yield return new WaitForSeconds(1.717f);
         isAttacking = false;
+    }
+
+
+    public void GetHit(Vector3 hitPoint, float effectTime, float effectForce,bool isEnemyDead = false)
+    {
+        SetStateNormal();
+        StartCoroutine(HitEffect(hitPoint, effectTime, effectForce,isEnemyDead));
+    }
+
+    private IEnumerator HitEffect(Vector3 hitPoint, float effectTime, float effectForce,bool isEnemyDead = false)
+    {
+        if (isEnemyDead)
+        {
+            animator.SetTrigger("Dead");
+            spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        }
+
+        if (rigidBody2D.isKinematic)
+        {
+            rigidBody2D.isKinematic = false;
+            rigidBody2D.AddForce((rigidBody2D.position - new Vector2(hitPoint.x,hitPoint.y)).normalized * effectForce);
+        }
+
+        yield return new WaitForSeconds(effectTime);        
+        rigidBody2D.velocity = Vector2.zero;
+        rigidBody2D.isKinematic = true;
+
+        if (isEnemyDead)
+        {
+            circleCollider2D.enabled = false;
+            this.enabled = false;
+        }
+        else
+            SetStateMoveable();
     }
 
     private void CreateMovePosition()
@@ -149,5 +185,18 @@ public class EnemyMovement : MonoBehaviour,IAiMove
         Vector3 myScale = transform.localScale;
         myScale.x *= -1;
         transform.localScale = myScale;
+    }
+
+    private void SetStateNormal()
+    {
+        StopAllCoroutines();
+        animator.SetBool("isWalking", false);
+        isWalking = false;
+        isAttacking = false;
+    }
+
+    private void SetStateMoveable()
+    {
+        StartCoroutine(UpdateState());
     }
 }

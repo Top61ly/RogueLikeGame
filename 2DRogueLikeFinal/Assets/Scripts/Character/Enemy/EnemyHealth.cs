@@ -32,32 +32,28 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private void OnDestroyed()
-    {
-        Debug.Log(name + " Dead");
-        animator.SetTrigger("Dead");
-        circleCollider2D.enabled = false;
-        enemyMovement.StopAllCoroutines();
-        enemyMovement.enabled = false;
-        bulletsAttack.enabled = false;
-        spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1);             
+    {               
+        //EnemyAttack enable = false;
+
+        //
         if (OnEnemyDestroyed != null)
             OnEnemyDestroyed.Invoke(this, new EventArgs());
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage,Vector3 hitPoint,float effectTime,float effectForce)
     {
         healthPoints -= damage;
         if (healthPoints < 0)
+        {
+            enemyMovement.GetHit(hitPoint, effectTime, effectForce, true);
             OnDestroyed();
+        }
+        else
+            enemyMovement.GetHit(hitPoint, effectTime, effectForce);
     }
     
     public void DisableCollider()
     {
         circleCollider2D.enabled = false;
-    }
-
-    private void OnMouseDown()
-    {
-        TakeDamage(10);
     }
 }

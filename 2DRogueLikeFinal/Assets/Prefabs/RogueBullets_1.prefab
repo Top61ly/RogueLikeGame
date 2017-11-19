@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  effectTime: 2
+  effectTime: 0.2
   effectForce: 300
 --- !u!212 &212095093115917618
 SpriteRenderer:

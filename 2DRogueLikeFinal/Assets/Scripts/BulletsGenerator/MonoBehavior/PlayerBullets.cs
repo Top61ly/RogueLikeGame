@@ -16,22 +16,10 @@ public class PlayerBullets : MonoBehaviour
         {
             if (collision.CompareTag("Enemy"))
             {
-                collision.GetComponent<EnemyHealth>().TakeDamage(damage);
-
-                StartCoroutine(HitEffect(collision.GetComponent<Rigidbody2D>()));
+                var enemyHealth = collision.GetComponent<EnemyHealth>();
+                enemyHealth.TakeDamage(damage,transform.position,effectTime,effectForce);
             }
+            Destroy(gameObject);
         }
-    }
-
-    private IEnumerator HitEffect(Rigidbody2D rb2D)
-    {
-        if (rb2D.isKinematic)
-        {
-            rb2D.isKinematic = false;
-            rb2D.AddForce((rb2D.position - new Vector2(transform.position.x, transform.position.y)).normalized * effectForce);
-        }
-        yield return new WaitForSeconds(effectTime);
-        rb2D.isKinematic = true;
-        Destroy(gameObject);
     }
 }
