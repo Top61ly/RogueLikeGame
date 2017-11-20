@@ -26,6 +26,7 @@ namespace BulletsGenerator
 
         private const string bulletsWavePropDescriptionName = "description";
         private const string bulletsPropName = "bullets";
+        private const string bossPropName = "bulletsWave";
 
         private readonly float verticalSpacing = EditorGUIUtility.standardVerticalSpacing;
 
@@ -36,7 +37,7 @@ namespace BulletsGenerator
             descriptionProperty = serializedObject.FindProperty(bulletsWavePropDescriptionName);
 
             bulletsProperty = serializedObject.FindProperty(bulletsPropName);
-
+                     
             CheckAndCreateSubEditors(bulletsWave.bullets);
 
             SetBulletsNamesArray();

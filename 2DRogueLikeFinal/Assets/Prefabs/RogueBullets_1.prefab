@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 50356434653753474}
   - component: {fileID: 58029341109996674}
   - component: {fileID: 114802398167866368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RogueBullets_1
-  m_TagString: Gun
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,6 +92,7 @@ MonoBehaviour:
   damage: 10
   effectTime: 0.2
   effectForce: 300
+  explosion: {fileID: 1904422459134866, guid: 1172f3d1f7065fc4ca0ce87ed282e00c, type: 2}
 --- !u!212 &212095093115917618
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -124,7 +125,7 @@ SpriteRenderer:
   m_SortingLayerID: 1789643865
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa7844e43d7822e4882719eb8cd038f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd607b54ec55054419391556f2cd68db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

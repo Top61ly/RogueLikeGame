@@ -50,67 +50,65 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEditor">
-      <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Timeline">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>E:/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>E:/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\raytest.cs" />
-    <Compile Include="Assets\Scripts\BoardCreater\BoardCreator.cs" />
-    <Compile Include="Assets\Scripts\BoardCreater\Boundary.cs" />
-    <Compile Include="Assets\Scripts\BoardCreater\Corridor.cs" />
-    <Compile Include="Assets\Scripts\BoardCreater\FloatRange.cs" />
-    <Compile Include="Assets\Scripts\BoardCreater\IntRange.cs" />
-    <Compile Include="Assets\Scripts\BoardCreater\Room.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\MonoBehavior\BulletsAttack.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\MonoBehavior\EnemyBullets.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\MonoBehavior\PlayerBullets.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\ScriptableObject\Bullets\Bullets.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\ScriptableObject\Bullets\LinearParticleBullets.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\ScriptableObject\Bullets\ParticleBullets.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\ScriptableObject\Bullets\RandomChasingParticleBullets.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\ScriptableObject\Bullets\ShotParticleBullets.cs" />
-    <Compile Include="Assets\Scripts\BulletsGenerator\ScriptableObject\BulletsWave.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraOrthographic.cs" />
-    <Compile Include="Assets\Scripts\Character\Enemy\EnemyHealth.cs" />
-    <Compile Include="Assets\Scripts\Character\Enemy\EnemyMovement.cs" />
-    <Compile Include="Assets\Scripts\Character\IAiMove.cs" />
-    <Compile Include="Assets\Scripts\Character\Player\PlayerAttack.cs" />
-    <Compile Include="Assets\Scripts\Character\Player\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\Character\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Character\Player\PlayerWeaponControl.cs" />
-    <Compile Include="Assets\Scripts\GameControl\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\BoardCreator.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\Boundary.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\Corridor.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\FloatRange.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\IntRange.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\Room.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BulletsGenerator\BulletsAttack.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BulletsGenerator\EnemyBullets.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BulletsGenerator\PlayerBullets.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Camera\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Camera\CameraOrthographic.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\Character.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\Enemy\EnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\Enemy\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\Enemy\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\Player\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\Player\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\Player\PlayerWeaponControl.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\DestroyDelay.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Weapon\LinearRangeWeapon.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Weapon\RangeWeapon.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Weapon\Weapon.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Bullets\Bullets.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Bullets\LinearParticleBullets.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Bullets\ParticleBullets.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Bullets\RandomChasingParticleBullets.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Bullets\ShotParticleBullets.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\BulletsWave.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
