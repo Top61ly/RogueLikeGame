@@ -1,11 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public interface IRDSObject
+public class IRDSObject
 {
-    float rdsProbability { get; set; }
-    bool rdsUnique { get; set; }
-    bool rdsAlways { get; set; }
-    bool rdsEnabled { get; set; }
+    float rdsProbability;
+    bool rdsUnique;
+    bool rdsAlways;
+    bool rdsEnabled;
+
+    public IRDSObject(float _rdsProbability,bool _rdsUnique,bool _rdsAlways,bool _rdsEnable)
+    {
+        rdsProbability =_rdsProbability;
+        rdsUnique = _rdsUnique;
+        rdsAlways = _rdsAlways;
+        rdsEnabled = _rdsEnable;            
+    }
+
+    event EventHandler rdsPreResultEvaluation;
+
+    event EventHandler rdsHit;
+
+    event EventHandler<ResultEventArgs> rdsPostResultEvaluation;
+
+    public virtual void OnRDSPreResultEvaluation(EventArgs e)
+    { }
+
+    public virtual void OnRDSHit(EventArgs e)
+    { }
+
+    public virtual void OnRDSPostResultEvaluation(ResultEventArgs e)
+    { }
+
+
+}
+
+public class ResultEventArgs : EventArgs
+{
+
 }

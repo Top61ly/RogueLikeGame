@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.1.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -100,6 +102,7 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\DestroyDelay.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\LevelManager.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\WeaponManager.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\ItemRandomDrop\RDSNullValue.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Item.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\Bullets.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\HitDestroyBullets.cs" />
