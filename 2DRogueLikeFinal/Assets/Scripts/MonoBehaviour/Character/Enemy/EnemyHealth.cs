@@ -4,12 +4,20 @@ using UnityEngine;
 using System;
 
 
-public class EnemyHealth : Character
+public enum EnemyType
+{
+    Usual,
+    Rare,
+    Legend
+}
+
+public class EnemyHealth : CharacterHealth
 {
     public EventHandler OnEnemyDestroyed;
 
     private EnemyMovement enemyMovement;
-    private BulletsGenerator.BulletsAttack bulletsAttack;
+
+    public EnemyType enemyType = EnemyType.Usual;
 
     private CircleCollider2D circleCollider2D;
     private Animator animator;
@@ -21,7 +29,6 @@ public class EnemyHealth : Character
     {
         animator = GetComponent<Animator>();
         enemyMovement = GetComponent<EnemyMovement>();
-        bulletsAttack = GetComponent<BulletsGenerator.BulletsAttack>();
         circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -40,10 +47,10 @@ public class EnemyHealth : Character
             OnEnemyDestroyed.Invoke(this, new EventArgs());
     }
 
-    public void TakeDamage(int damage,Vector3 hitPoint,float effectTime,float effectForce)
+    public override void TakeDamage(int damage,Vector3 hitPoint,float effectTime,float effectForce)
     {
         healthPoints -= damage;
-        if (healthPoints < 0)
+        if (healthPoints <= 0)
         {
             enemyMovement.GetHit(hitPoint, effectTime, effectForce, true);
             OnDestroyed();

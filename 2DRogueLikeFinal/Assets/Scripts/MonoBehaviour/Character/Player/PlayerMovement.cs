@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 movement;
 
-    private bool isFacingRight = true;   
+    public bool isFacingRight = true;   
 
     public void Awake()
     {
@@ -29,9 +29,11 @@ public class PlayerMovement : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         Move(h,v);
 
-        Turn(h);
+        Turn(mousePosition);
 
         Animating(h, v);
 
@@ -56,11 +58,12 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement.normalized*moveSpeed*Time.deltaTime);    
     }
     
-    private void Turn(float h)
+    private void Turn(Vector2 mousePosition)
     {
-        if (h > 0 && !isFacingRight)
+        float viewDirection = mousePosition.x - transform.position.x;
+        if (viewDirection > 0 && !isFacingRight)
             flip();
-        else if (h < 0 && isFacingRight)
+        else if (viewDirection < 0 && isFacingRight)
             flip();
     }
 

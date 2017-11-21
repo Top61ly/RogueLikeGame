@@ -82,7 +82,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.68333334
-    functionName: Shoot
+    functionName: TriggerWeapon
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

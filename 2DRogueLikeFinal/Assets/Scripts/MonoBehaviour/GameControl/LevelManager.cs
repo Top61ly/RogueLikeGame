@@ -10,6 +10,10 @@ public class LevelManager : MonoBehaviour
 
 	public GameObject enemy;
 
+    public IntRange enemyIndex = new IntRange(1,4);
+
+    public GameObject Door;
+
 	private void Start()
 	{
 	  //  GenerateEnemies();
@@ -31,7 +35,7 @@ public class LevelManager : MonoBehaviour
 	private void OnEnemyDestroyed(object sender, EventArgs e)
 	{
 		enemies.Remove(sender as EnemyHealth);
-		if (enemies.FindAll(eh=>!eh.healthPoints.Equals(0)).Count == 0)
+		if (enemies.Count == 0)
 		{
 			EnemyClear();
 		}
@@ -39,6 +43,7 @@ public class LevelManager : MonoBehaviour
 
 	private void EnemyClear()
 	{
+        //Check if Enemy all destroyed if no generate next wave, yes open the door
 		Debug.Log("Enemy Clear");
 	}
 }

@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 212712853285725172}
   - component: {fileID: 50590811355737530}
   - component: {fileID: 58131131870442670}
-  - component: {fileID: 114122460601242864}
+  - component: {fileID: 114141646592358314}
   m_Layer: 10
   m_Name: RogueBullets_0
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.12
---- !u!114 &114122460601242864
+--- !u!114 &114141646592358314
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,10 +86,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087641500388478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff5b00bb443bb240bb66800a30e8677, type: 3}
+  m_Script: {fileID: 11500000, guid: 6178fa8b977c5094d94849c8c1b37a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  playerIndex: 1
+  damage: 0
+  effectTime: 1
+  effectForce: 1
+  explosion: {fileID: 0}
 --- !u!212 &212712853285725172
 SpriteRenderer:
   m_ObjectHideFlags: 1

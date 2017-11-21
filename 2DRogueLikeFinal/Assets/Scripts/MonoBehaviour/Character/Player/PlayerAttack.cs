@@ -17,12 +17,10 @@ public class PlayerAttack : MonoBehaviour
     //Control the shoot
     private float timer = 0;
     private float effectDisplayTime = 0.2f;
-    private Weapon weapon;
+    public Weapon weapon;
 
     //Weapon Control
-    private bool isWeaponInRange;
-    private Transform weaponPoint;
-    public Transform weaponWait;
+    public Transform Item;
 
     private void Awake()
     {
@@ -32,8 +30,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        weaponPoint = transform.Find("WeaponPoint");
-       // enemyLayerMask =1<<LayerMask.NameToLayer("Enemy");
+        weapon.Init();
         DisableEffect();
     }
 
@@ -72,60 +69,42 @@ public class PlayerAttack : MonoBehaviour
 
     Quaternion GetTarget()
     {
-        int allNotDefaultlayer = ~(1 << LayerMask.NameToLayer("Default"));
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        float x = Mathf.Abs(playerMovement.movement.x);
-        float y = playerMovement.movement.y;
+        float x = Mathf.Abs(mousePosition.x-transform.position.x);
+        float y = mousePosition.y-transform.position.y;
 
         float angle = Mathf.Atan2(y, x)*Mathf.Rad2Deg;
         
-        Quaternion result = Quaternion.AngleAxis(angle,new Vector3(0,0,1));
-
-
-        //float distance = 0;
-        
-        //foreach (Collider2D collider in colliderEnemiesList)
-        //{
-        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, collider.transform.position - transform.position, allNotDefaultlayer);
-        //    if (hit.collider != null && hit.collider == collider)
-        //        continue;
-        //    else
-        //        colliderEnemiesList.Remove(collider);
-        //}
-
-        //foreach (Collider2D collider in colliderEnemiesList)
-        //{
-        //    if ((collider.transform.position - transform.position).magnitude > distance)
-        //        result = Quaternion.Euler((collider.transform.position - transform.position).normalized);
-        //}
+        Quaternion result = Quaternion.AngleAxis(angle,new Vector3(0,0,1));          
 
         return result;
     }
 
     void ChangeWeapon()
     {
-        weaponTransform.parent = null;
-        weaponTransform.rotation = Quaternion.identity;
-        weaponTransform.position = Vector3.zero;
-        weaponTransform = null;         
-              
+        //Play the weapon change audio
+
+        //----------------
+        if (Item)
+        {
+            Item.GetComponent<Item>().Use(transform);
+        }       
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Weapon"))
+        if (collision.CompareTag("Item"))
         {
-            isWeaponInRange = true;
-            weaponWait = collision.transform;
+            Item = collision.transform;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Weapon"))
+        if (collision.CompareTag("Item"))
         {
-            isWeaponInRange = false;
-            weaponWait = null;
+            Item = null;
         }
     }
 }

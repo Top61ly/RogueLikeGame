@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114802398167866368}
   m_Layer: 10
   m_Name: RogueBullets_1
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
