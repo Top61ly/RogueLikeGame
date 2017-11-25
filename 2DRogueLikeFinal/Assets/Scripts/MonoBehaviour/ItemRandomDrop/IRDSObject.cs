@@ -9,6 +9,14 @@ public class IRDSObject
     bool rdsAlways;
     bool rdsEnabled;
 
+    public IRDSObject()
+    {
+        rdsProbability = 0;
+        rdsUnique = false;
+        rdsAlways = false;
+        rdsEnabled = false;
+    }
+
     public IRDSObject(float _rdsProbability,bool _rdsUnique,bool _rdsAlways,bool _rdsEnable)
     {
         rdsProbability =_rdsProbability;

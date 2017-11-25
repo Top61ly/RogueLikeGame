@@ -10,21 +10,21 @@ public class ShotRangeWeapon : RangeWeapon
     public int numOfBullets;
 
     private Vector3 direction;
-    private Transform startPosition;
-    private Transform endPosition;
+    public Transform startPosition;
+    public Transform endPosition;
 
-    private SpriteRenderer shootEffect;
+    public SpriteRenderer shootEffect;
 
     protected override void SpecificInit()
     {
-        endPosition = transform.Find("EndPosition");
-        startPosition = endPosition.Find("StartPosition");
-        shootEffect = transform.Find("ShootEffect").GetComponent<SpriteRenderer>();
-        shootEffect.enabled = false;
+        ImmediateDisableEffect();
     }
 
     protected override void ImmediateShoot()
     {
+        if (weaponAnimator)
+            weaponAnimator.SetTrigger("Shoot");
+
         direction = (startPosition.position - endPosition.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle -= (numOfBullets - 1) * angleGap / 2;

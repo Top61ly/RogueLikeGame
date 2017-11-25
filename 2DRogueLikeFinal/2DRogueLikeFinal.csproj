@@ -87,8 +87,6 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\FloatRange.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\IntRange.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\Room.cs" />
-    <Compile Include="Assets\Scripts\MonoBehaviour\BulletsGenerator\EnemyBullets.cs" />
-    <Compile Include="Assets\Scripts\MonoBehaviour\BulletsGenerator\PlayerBullets.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Camera\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Camera\CameraOrthographic.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Character\CharacterHealth.cs" />
@@ -102,20 +100,26 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\DestroyDelay.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\LevelManager.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\WeaponManager.cs" />
-    <Compile Include="Assets\Scripts\MonoBehaviour\ItemRandomDrop\RDSNullValue.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Item.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\DropItem.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\myItemDropTable.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\Bullets.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\HitDestroyBullets.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\LinearRangeWeapon.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\ProjectionBullets.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\RangeWeapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\ShotRangeWeapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\Weapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\ItemRandomDrop\IRDSObject.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\ItemRandomDrop\IRDSTable.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\ItemRandomDrop\IRDSValue.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\ItemRandomDrop\RDSNullValue.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\AllWeapons.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\EveryLevelResources.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\ResettableScriptableObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Scripts\Shader\DefaultColorFlash.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

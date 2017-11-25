@@ -21,9 +21,7 @@ public class EnemyHealth : CharacterHealth
 
     private CircleCollider2D circleCollider2D;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
-
-    public float healthPoints;
+    private SpriteRenderer spriteRenderer;    
 
     private void Awake()
     {
@@ -39,28 +37,23 @@ public class EnemyHealth : CharacterHealth
     }
 
     private void OnDestroyed()
-    {               
-        //EnemyAttack enable = false;
-
-        //
+    {
+        enemyMovement.StopAllCoroutines();
+        enemyMovement.enabled = false;
+        animator.SetTrigger("Dead");
+        gameObject.layer = LayerMask.NameToLayer("Corps");
+        spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f, 1f);
+        
         if (OnEnemyDestroyed != null)
             OnEnemyDestroyed.Invoke(this, new EventArgs());
     }
 
-    public override void TakeDamage(int damage,Vector3 hitPoint,float effectTime,float effectForce)
+    public override void TakeDamage(int damage)
     {
         healthPoints -= damage;
         if (healthPoints <= 0)
         {
-            enemyMovement.GetHit(hitPoint, effectTime, effectForce, true);
             OnDestroyed();
         }
-        else
-            enemyMovement.GetHit(hitPoint, effectTime, effectForce);
-    }
-    
-    public void DisableCollider()
-    {
-        circleCollider2D.enabled = false;
-    }
+   }
 }

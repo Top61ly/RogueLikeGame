@@ -9,22 +9,34 @@ public class LinearRangeWeapon : RangeWeapon
 
     public FloatRange angleRange;
 
-    private Vector3 direction;
-    private Transform startPosition;
-    private Transform endPosition;
+    public float effectTime;
+    public float effectForce;
 
-    private SpriteRenderer shootEffect;
+    private Vector3 direction;
+    public Transform startPosition;
+    public Transform endPosition;    
+
+    public SpriteRenderer shootEffect;
 
     protected override void SpecificInit()
     {
-        endPosition = transform.Find("EndPosition");
-        startPosition = endPosition.Find("StartPosition");
-        shootEffect = transform.Find("ShootEffect").GetComponent<SpriteRenderer>();
-        shootEffect.enabled = false;
+        var bullet = bullets.GetComponent<ProjectionBullets>();
+
+        bullet.damage = damage;
+
+        if (bullet)
+        {
+            bullet.playerIndex = playerIndex;
+            bullet.effectForce = effectForce;
+            bullet.effectTime = effectTime;
+        }
+        ImmediateDisableEffect();
     }
 
     protected override void ImmediateShoot()
     {
+        if (weaponAnimator)
+            weaponAnimator.SetTrigger("Shoot");
         direction = (startPosition.position - endPosition.position).normalized;
         GameObject go = Instantiate(bullets, startPosition.position, Quaternion.identity) as GameObject;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

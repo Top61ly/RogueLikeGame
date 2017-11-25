@@ -22,9 +22,10 @@ public class EnemyMovement : MonoBehaviour
 
 	public EnemyState enemyState;
 
-	private bool isWalking = false;
+    public bool isEffecting = false;
+	public bool isWalking = false;
+	public bool isAttacking = false;
 	private bool isFacingRight = false;
-	private bool isAttacking = false;
 
 	private Animator animator;
 	private Rigidbody2D rigidBody2D;
@@ -62,23 +63,23 @@ public class EnemyMovement : MonoBehaviour
 	}
 
 
-	private IEnumerator UpdateState()
+	public IEnumerator UpdateState()
 	{
 		while (true)
 		{
 			yield return new WaitForSeconds(thinkTime);
-			if (!isWalking && !isAttacking)
+			if (!isAttacking)
 			{
 				var actionIndex = actionRandom.Random;
 				enemyState = (EnemyState)actionIndex;
 				switch (enemyState)
 				{                    
 					case EnemyState.Chasing:
-						if (!isWalking)
+						if (!isWalking && !isEffecting)
 							StartCoroutine(AiMove());
 						break;
 					case EnemyState.Attacking:
-						StartCoroutine(Attack());
+							StartCoroutine(Attack());
 						break;
 					default:
 						break;
@@ -120,41 +121,6 @@ public class EnemyMovement : MonoBehaviour
 		isAttacking = false;
 	}
 
-
-	public void GetHit(Vector3 hitPoint, float effectTime, float effectForce,bool isEnemyDead = false)
-	{
-		SetStateNormal();
-		StartCoroutine(HitEffect(hitPoint, effectTime, effectForce,isEnemyDead));
-	}
-
-	private IEnumerator HitEffect(Vector3 hitPoint, float effectTime, float effectForce,bool isEnemyDead = false)
-	{
-		if (isEnemyDead)
-		{
-			animator.SetTrigger("Dead");
-			gameObject.layer = LayerMask.NameToLayer("BulletsAndWeapon");
-			spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1);
-		}
-
-		if (rigidBody2D.isKinematic)
-		{
-			rigidBody2D.isKinematic = false;
-			rigidBody2D.AddForce((rigidBody2D.position - new Vector2(hitPoint.x,hitPoint.y)).normalized * effectForce);
-		}
-
-		yield return new WaitForSeconds(effectTime);        
-		rigidBody2D.velocity = Vector2.zero;
-		rigidBody2D.isKinematic = true;
-
-		if (isEnemyDead)
-		{
-			circleCollider2D.enabled = false;
-			this.enabled = false;
-		}
-		else
-			SetStateMoveable();
-	}
-
 	private void CreateMovePosition()
 	{
 
@@ -164,12 +130,12 @@ public class EnemyMovement : MonoBehaviour
 		Vector2 movement = new Vector2(x, y).normalized;
 
 		int a =1<< LayerMask.NameToLayer("Environment");
-        
+		
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, movement,Mathf.Infinity,a);
 
 		if ( hit.collider != null)
 		{
-           	float distance = (hit.point - rigidBody2D.position).magnitude;
+			float distance = (hit.point - rigidBody2D.position).magnitude;
 			if (distance < movement.magnitude)
 				CreateMovePosition();
 			else
@@ -188,16 +154,12 @@ public class EnemyMovement : MonoBehaviour
 		transform.localScale = myScale;
 	}
 
-	private void SetStateNormal()
+	public void GetEffect()
 	{
 		StopAllCoroutines();
-		animator.SetBool("isWalking", false);
-		isWalking = false;
 		isAttacking = false;
-	}
-
-	private void SetStateMoveable()
-	{
+        isEffecting = true;
+		isWalking = true;
 		StartCoroutine(UpdateState());
 	}
 }

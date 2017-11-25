@@ -18,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     private float timer = 0;
     private float effectDisplayTime = 0.2f;
     public Weapon weapon;
+    private Animator weaponAnimator;
 
     //Weapon Control
     public Transform Item;
@@ -26,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         weapon = GetComponentInChildren<Weapon>();
+        weaponAnimator = weapon.GetComponent<Animator>();
     }
 
     void Start()
@@ -58,7 +60,7 @@ public class PlayerAttack : MonoBehaviour
 
     void UseWeapon()
     {
-        timer = 0;
+        timer = 0;        
         weapon.TriggerWeapon();
     }
 

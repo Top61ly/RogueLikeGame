@@ -7,6 +7,8 @@ public abstract class RangeWeapon : Weapon
 {
     public GameObject bullets;    
 
+    public Animator weaponAnimator;
+
     public override void TriggerWeapon()
     {
         ImmediateShoot();
@@ -19,7 +21,8 @@ public abstract class RangeWeapon : Weapon
     }
 
     public override void Init()
-    {
+    {        
+        bullets.GetComponent<Bullets>().damage = damage;
         SpecificInit();
     }
 

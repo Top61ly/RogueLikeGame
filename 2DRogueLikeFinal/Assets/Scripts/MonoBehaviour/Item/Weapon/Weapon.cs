@@ -5,7 +5,9 @@ using UnityEngine;
 
 public abstract class Weapon : Item
 {
+    public int playerIndex;
     public float timerGap;
+    public int damage;
 
     public override void Use(Transform player)
     {
@@ -15,6 +17,7 @@ public abstract class Weapon : Item
         playerAttack.weaponTransform.DetachChildren();
         weapon.DisableEffect();
         weapon.transform.rotation = Quaternion.identity;
+        weapon.transform.position = new Vector3(weapon.transform.position.x, weapon.transform.position.y - 0.2f, weapon.transform.position.z);
 
         transform.SetParent(playerAttack.weaponTransform);
         transform.GetComponent<BoxCollider2D>().enabled = false;
@@ -26,6 +29,11 @@ public abstract class Weapon : Item
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
         transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    private void Start()
+    {
+        DisableEffect();
     }
 
     public abstract void Init();

@@ -14,10 +14,26 @@ public class LevelManager : MonoBehaviour
 
     public GameObject Door;
 
+    public List<GameObject> groundList = new List<GameObject>();
+
+    public myItemDropTable itemDropTable;
+
 	private void Start()
 	{
-	  //  GenerateEnemies();
-	}
+        GenerateBoard();
+        GenerateEnemies();
+    }
+
+
+    private void GenerateBoard()
+    {
+        for (int i = 0;i<100;i++)
+            for (int j = 0; j<100;j++)
+            {
+                Vector3 position = new Vector3(i * 0.5f, j * 0.5f, 0);
+                Instantiate(GenerateFromGameObjectList(groundList), position, Quaternion.identity,transform);
+            }
+    }
 
 	private void GenerateEnemies()
 	{
@@ -40,10 +56,21 @@ public class LevelManager : MonoBehaviour
 			EnemyClear();
 		}
 	}
+    
+    private GameObject GenerateFromGameObjectList(List<GameObject> gameObjects)
+    {
+        int length = gameObjects.Count;
+        length = UnityEngine.Random.Range(0, length - 1);
+        return gameObjects[length];
+    }
 
 	private void EnemyClear()
 	{
         //Check if Enemy all destroyed if no generate next wave, yes open the door
 		Debug.Log("Enemy Clear");
+
+        var player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        Instantiate(itemDropTable.generateItem(),player.position,Quaternion.identity);
 	}
 }
