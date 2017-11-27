@@ -266,6 +266,7 @@ MonoBehaviour:
   playerIndex: 1
   healthPoints: 10
   enemyType: 0
+  spriteRenderer: {fileID: 212273489117254996}
 --- !u!114 &114148979124324492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,6 +283,7 @@ MonoBehaviour:
   damage: 0
   bullets: {fileID: 1087641500388478, guid: e807fc942862f994da92dd0a52a73837, type: 2}
   weaponAnimator: {fileID: 0}
+  gunAudio: {fileID: 0}
   shootForce: 300
   angleRange:
     m_Min: -1

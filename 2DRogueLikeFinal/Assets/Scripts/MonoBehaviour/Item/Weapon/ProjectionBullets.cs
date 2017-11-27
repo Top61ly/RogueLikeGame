@@ -19,7 +19,6 @@ public abstract class ProjectionBullets : Bullets
     protected virtual IEnumerator HitEffect(float effectForce,float effectTime)
     {
         enemyMovement.isEffecting = true;
-        enemyMovement.isWalking = true;
 
         Rigidbody2D rigidBody2D = characterHealth.GetComponent<Rigidbody2D>();
             
@@ -34,18 +33,7 @@ public abstract class ProjectionBullets : Bullets
         rigidBody2D.velocity = Vector2.zero;
         rigidBody2D.isKinematic = true;
         enemyMovement.isEffecting = false;
-        enemyMovement.isWalking = false;
-    }
-
-    protected virtual IEnumerator Flash(float flashTime)
-    {
-        SpriteRenderer spriteRenderer = characterHealth.GetComponent<SpriteRenderer>();
-
-        spriteRenderer.material.SetFloat("_FlashAmount", 1.0f);
-        yield return new WaitForSeconds(flashTime);
-        spriteRenderer.material.SetFloat("_FlashAmount", 0.0f);
-
-    }
+    }   
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
@@ -63,9 +51,8 @@ public abstract class ProjectionBullets : Bullets
             {
                 if (characterHealth.healthPoints <= 0)
                     effectForce *= 2;
-                if (!enemyMovement.isWalking)
+                //if (!enemyMovement.isWalking)
                     characterHealth.StartCoroutine(HitEffect(effectForce, effectTime));
-                characterHealth.StartCoroutine(Flash(flashTime));
             }
 
 

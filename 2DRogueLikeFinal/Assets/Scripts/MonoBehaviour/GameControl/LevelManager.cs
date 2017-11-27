@@ -5,19 +5,23 @@ using System;
 
 public class LevelManager : MonoBehaviour
 {
+    public int height;
+    public int width;
+
+    public float tileSize = 0.5f;
 
 	public List<EnemyHealth> enemies;
 
 	public GameObject enemy;
+    public GameObject enemyGenerateEffect;
 
     public IntRange enemyIndex = new IntRange(1,4);
-
-    public GameObject Door;
-
+      
     public List<GameObject> groundList = new List<GameObject>();
+    public GameObject groundBoundary;
 
     public myItemDropTable itemDropTable;
-
+        
 	private void Start()
 	{
         GenerateBoard();
@@ -27,19 +31,41 @@ public class LevelManager : MonoBehaviour
 
     private void GenerateBoard()
     {
-        for (int i = 0;i<100;i++)
-            for (int j = 0; j<100;j++)
+        for (int i = 0;i<width;i++)
+            for (int j = 0; j<height;j++)
             {
-                Vector3 position = new Vector3(i * 0.5f, j * 0.5f, 0);
+                Vector3 position = new Vector3(i * tileSize, j * tileSize, 0);
                 Instantiate(GenerateFromGameObjectList(groundList), position, Quaternion.identity,transform);
             }
+        for (int i = -1;i<width+1;i++)
+        {
+            Vector3 position = new Vector3(i * tileSize, -tileSize, 0);
+            var go = Instantiate(groundBoundary, position, Quaternion.identity);
+            go.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
+            position = new Vector3(i * tileSize, height*tileSize, 0);
+            go = Instantiate(groundBoundary, position, Quaternion.identity);
+            go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -height;
+        }
+        for (int j = 0;j<height;j++)
+        {
+            Vector3 position = new Vector3(-tileSize, j*tileSize, 0);
+            var go = Instantiate(groundBoundary, position, Quaternion.identity);
+            go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -j;
+            position = new Vector3( tileSize*width, j*tileSize, 0);
+            go = Instantiate(groundBoundary, position, Quaternion.identity);
+            go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -j;
+
+        }
     }
 
 	private void GenerateEnemies()
-	{
-		Vector3 position = new Vector3(0, 0, 0);
-		for (int i = 0; i<5;i++)
+	{   
+		for (int i = 0; i<30;i++)
 		{
+            FloatRange x = new FloatRange(0, width * tileSize);
+            FloatRange y = new FloatRange(0, height * tileSize);
+            var position = new Vector3(x.Random,y.Random,0);
+            Instantiate(enemyGenerateEffect, position, Quaternion.identity);
 			var spawnEnemey = Instantiate(enemy, position, Quaternion.identity) as GameObject;
 			position += new Vector3(0.1f, 0, 0);
 			var enemyHealth = spawnEnemey.GetComponent<EnemyHealth>();

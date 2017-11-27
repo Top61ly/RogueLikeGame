@@ -26,8 +26,8 @@ public class EnemyMovement : MonoBehaviour
 	public bool isWalking = false;
 	public bool isAttacking = false;
 	private bool isFacingRight = false;
-
-	private Animator animator;
+    
+    private Animator animator;
 	private Rigidbody2D rigidBody2D;
 	private Transform player;
 	private SpriteRenderer spriteRenderer;
@@ -43,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
 
 	private void Start()
 	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
+       player = GameObject.FindGameObjectWithTag("Player").transform;
 		CreateMovePosition();
 		StartCoroutine(UpdateState());
 	}
@@ -102,9 +102,15 @@ public class EnemyMovement : MonoBehaviour
 		float t = 0;
 		while (t <= 1f)
 		{
+            if (isEffecting)
+            {
+                animator.SetBool("isWalking", false);
+                isWalking = false;
+                yield break;
+            }
 			t += step;
 			Vector3 dest = Vector3.Lerp(startposition, destination, t);
-			rigidBody2D.MovePosition(dest);
+            rigidBody2D.MovePosition(dest);
 			yield return new WaitForSeconds(Time.deltaTime);
 		}
 		transform.position = destination;        
@@ -127,14 +133,15 @@ public class EnemyMovement : MonoBehaviour
 		float x = moveRange.Random;
 		float y = moveRange.Random;
 
-		Vector2 movement = new Vector2(x, y).normalized;
+		Vector2 movement = new Vector2(x, y);
 
-		int a =1<< LayerMask.NameToLayer("Environment");
-		
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, movement,Mathf.Infinity,a);
+        Vector2 direction = movement.normalized;		
+      
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction,Mathf.Infinity,1<<LayerMask.NameToLayer("Environment"));
 
 		if ( hit.collider != null)
 		{
+            Debug.Log("Hit");
 			float distance = (hit.point - rigidBody2D.position).magnitude;
 			if (distance < movement.magnitude)
 				CreateMovePosition();

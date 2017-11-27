@@ -18,10 +18,10 @@ public class EnemyHealth : CharacterHealth
     private EnemyMovement enemyMovement;
 
     public EnemyType enemyType = EnemyType.Usual;
+    public SpriteRenderer spriteRenderer;    
 
     private CircleCollider2D circleCollider2D;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;    
 
     private void Awake()
     {
@@ -51,9 +51,18 @@ public class EnemyHealth : CharacterHealth
     public override void TakeDamage(int damage)
     {
         healthPoints -= damage;
+        StartCoroutine(Flash(0.1f));
         if (healthPoints <= 0)
         {
             OnDestroyed();
         }
    }
+
+    protected virtual IEnumerator Flash(float flashTime)
+    {       
+        spriteRenderer.material.SetFloat("_FlashAmount", 1.0f);
+        yield return new WaitForSeconds(flashTime);
+        spriteRenderer.material.SetFloat("_FlashAmount", 0.0f);
+
+    }
 }
