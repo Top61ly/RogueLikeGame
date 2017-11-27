@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4259572975356838}
   - component: {fileID: 61953804647627652}
   - component: {fileID: 114945714310784190}
+  - component: {fileID: 82965985432611694}
   m_Layer: 10
   m_Name: ShotGun
   m_TagString: Item
@@ -214,6 +215,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6409662, y: 0.37944722}
   m_EdgeRadius: 0
+--- !u!82 &82965985432611694
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1239276214620990}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: acfb4469d64ad7d40a358a39efc68d6b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95160639535238852
 Animator:
   serializedVersion: 3
@@ -242,10 +323,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23620d1490c4a044cbf5e8f26bad36ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
   timerGap: 1
   damage: 3
   bullets: {fileID: 1247222575750474, guid: 118b3496e3803404f9fe4bbb3d1e32ae, type: 2}
   weaponAnimator: {fileID: 95160639535238852}
+  gunAudio: {fileID: 82965985432611694}
   shootForce: 1000
   angleGap: 10
   numOfBullets: 5

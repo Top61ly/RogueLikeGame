@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 4596593769665790}
   - component: {fileID: 61487624786712804}
   - component: {fileID: 114105965295789566}
+  - component: {fileID: 82999914251091992}
   m_Layer: 10
   m_Name: AK47
   m_TagString: Item
@@ -185,6 +186,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6409662, y: 0.37944722}
   m_EdgeRadius: 0
+--- !u!82 &82999914251091992
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1107078120896268}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 36f1e12601aa63c45af64c9ff10e9638, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95825043658411252
 Animator:
   serializedVersion: 3
@@ -218,12 +299,13 @@ MonoBehaviour:
   damage: 10
   bullets: {fileID: 1247222575750474, guid: 118b3496e3803404f9fe4bbb3d1e32ae, type: 2}
   weaponAnimator: {fileID: 95825043658411252}
+  gunAudio: {fileID: 82999914251091992}
   shootForce: 1000
   angleRange:
     m_Min: -2
     m_Max: 2
-  effectTime: 0
-  effectForce: 0
+  effectTime: 0.2
+  effectForce: 400
   startPosition: {fileID: 4562928652511116}
   endPosition: {fileID: 4008265943795076}
   shootEffect: {fileID: 212325619847786742}

@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 0
-  damage: 0
+  damage: 1
   effectTime: 0.2
   effectForce: 300
   flashTime: 0.01

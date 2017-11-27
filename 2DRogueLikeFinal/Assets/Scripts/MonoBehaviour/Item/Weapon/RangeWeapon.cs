@@ -9,8 +9,12 @@ public abstract class RangeWeapon : Weapon
 
     public Animator weaponAnimator;
 
+    public AudioSource gunAudio;
+
     public override void TriggerWeapon()
     {
+        if (gunAudio)
+            gunAudio.Play();
         ImmediateShoot();
         ImmediateEnableEffect();
     }
