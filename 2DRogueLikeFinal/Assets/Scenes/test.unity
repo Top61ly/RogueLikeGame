@@ -1327,10 +1327,10 @@ MonoBehaviour:
   itemDropTable: {fileID: 11400000, guid: a18fada6923b8d846acff43753b3c4cd, type: 2}
   totalEnemyWaveRange:
     m_Min: 1
-    m_Max: 1
+    m_Max: 4
   totalEnemyNumberPerWaveRange:
     m_Min: 1
-    m_Max: 1
+    m_Max: 2
   door: {fileID: 1493481446690610, guid: f5e7116b4270d9844b56c8abbc42eddb, type: 2}
   playerGenerateEffect: {fileID: 1761686989310902, guid: 65afa275517d45d4f9f9b4a750e59f22,
     type: 2}

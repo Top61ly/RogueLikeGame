@@ -147,13 +147,13 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(itemDropTable.generateItem(), player.position, Quaternion.identity,enemyHolder);
 
-            StartCoroutine(GenerateDoor());
+            GenerateDoor();
         }
         else
-            GenerateEnemies();
+            StartCoroutine(GenerateEnemies());
     }
 
-    private IEnumerator GenerateDoor()
+    private void GenerateDoor()
     {
         FloatRange boundaryWidth = new FloatRange(1, tileBoundary.maxX-tileSize);
         FloatRange boundaryHeight = new FloatRange(1, tileBoundary.maxY-tileSize);
@@ -164,7 +164,7 @@ public class LevelManager : MonoBehaviour
 
         var go = Instantiate(door, point, Quaternion.identity);
         go.GetComponent<TriggerTheDoor>().levelComplete += LevelComplete;
-        yield return new WaitForSeconds(1f);
+
         go.GetComponent<BoxCollider2D>().enabled = true;
     }
 
@@ -195,6 +195,12 @@ public class LevelManager : MonoBehaviour
         player.SetActive(false);
 
         LevelCompletePanel.SetActive(true);
+
+        waveIndex = 1;
+
+        totalWaveNumber = totalEnemyWaveRange.Random;
+
+        Debug.Log(totalWaveNumber);
 
         for (int i = 0; i<enemyHolder.childCount;i++)
         {
