@@ -135,18 +135,21 @@ public class EnemyMovement : MonoBehaviour
 
 		Vector2 movement = new Vector2(x, y);
 
-        Vector2 direction = movement.normalized;		
-      
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction,Mathf.Infinity,1<<LayerMask.NameToLayer("Environment"));
+        Vector2 direction = movement.normalized;
+
+        int a = 1 << LayerMask.NameToLayer("Environment");
+
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction,movement.magnitude,a);
 
 		if ( hit.collider != null)
 		{
-            Debug.Log("Hit");
 			float distance = (hit.point - rigidBody2D.position).magnitude;
-			if (distance < movement.magnitude)
-				CreateMovePosition();
-			else
-				destination = rigidBody2D.position + movement;
+            if (distance < movement.magnitude)
+            {
+                destination = transform.position;
+            }
+            else
+                destination = rigidBody2D.position + movement;
 		}
 		else        
 			destination = rigidBody2D.position + movement;        

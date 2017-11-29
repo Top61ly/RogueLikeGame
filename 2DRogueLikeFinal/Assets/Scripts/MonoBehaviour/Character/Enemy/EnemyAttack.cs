@@ -13,7 +13,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         GetComponent<Weapon>().Init();
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         endPosition = transform.Find("EndPosition");
         startPosition = endPosition.Find("StartPosition");
     }

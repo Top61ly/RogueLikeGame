@@ -23,6 +23,7 @@ public abstract class Weapon : Item
         transform.GetComponent<BoxCollider2D>().enabled = false;
 
         weapon.GetComponent<BoxCollider2D>().enabled = true;
+        weapon.transform.SetParent(GameObject.Find("EnemyHolder").transform);
 
         playerAttack.weapon = this;
         Init();

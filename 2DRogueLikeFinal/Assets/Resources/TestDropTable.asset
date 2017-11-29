@@ -31,3 +31,21 @@ MonoBehaviour:
     isUnique: 0
     isAlways: 0
     isEnabled: 0
+  - description: 
+    probability: 0
+    item: {fileID: 1933982605384240, guid: 6d82794a0b6fb9945aef9460c7cdca45, type: 2}
+    dropCount:
+      m_Min: 0
+      m_Max: 0
+    isUnique: 0
+    isAlways: 0
+    isEnabled: 0
+  - description: 
+    probability: 0
+    item: {fileID: 1239276214620990, guid: 97760db8ae3e1c5429429aa3faa06e80, type: 2}
+    dropCount:
+      m_Min: 0
+      m_Max: 0
+    isUnique: 0
+    isAlways: 0
+    isEnabled: 0

@@ -51,6 +51,7 @@ public class EnemyHealth : CharacterHealth
     public override void TakeDamage(int damage)
     {
         healthPoints -= damage;
+        PopupTextControl.CreateFloatingText(damage, transform);
         StartCoroutine(Flash(0.1f));
         if (healthPoints <= 0)
         {

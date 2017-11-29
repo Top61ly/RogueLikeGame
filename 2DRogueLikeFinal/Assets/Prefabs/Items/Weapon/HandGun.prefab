@@ -100,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1933982605384240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.590816, y: 13.988649, z: 0}
+  m_LocalPosition: {x: 4.7439995, y: 4.1849976, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4696424177712728}
@@ -313,12 +313,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 0
-  timerGap: 0.2
+  timerGap: 2
   damage: 0
   bullets: {fileID: 1247222575750474, guid: 118b3496e3803404f9fe4bbb3d1e32ae, type: 2}
   weaponAnimator: {fileID: 95420524891459124}
   gunAudio: {fileID: 82487881015366002}
-  shootForce: 10
+  shootForce: 200
   angleRange:
     m_Min: -5
     m_Max: 5

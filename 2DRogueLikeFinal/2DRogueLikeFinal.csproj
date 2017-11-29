@@ -96,7 +96,9 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\Character\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Character\Player\PlayerWeaponControl.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\DestroyDelay.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\GameManager.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\TriggerTheDoor.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\GameControl\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Item.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\Bullets.cs" />
@@ -108,8 +110,11 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\Weapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Trap\SimpleTrap.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Trap\Trap.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\UI\FloatingText.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\UI\PopupTextControl.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\AllWeapons.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\EveryLevelResources.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\DataControl\ResetableSaveData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\ResettableScriptableObject.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DropItem.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\myItemDropTable.cs" />
