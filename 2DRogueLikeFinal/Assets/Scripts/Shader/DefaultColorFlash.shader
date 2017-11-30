@@ -20,6 +20,7 @@ Shader "Sprites/DefaultColorFlash"
 		"RenderType" = "Transparent"
 		"PreviewType" = "Plane"
 		"CanUseSpriteAtlas" = "True"
+			"LightMode" = "ForwardBase"
 	}
 
 		Cull Off
@@ -71,10 +72,13 @@ Shader "Sprites/DefaultColorFlash"
 
 	fixed4 frag(v2f IN) : COLOR
 	{
+		
+		
 		fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
-
 		c.rgb = lerp(c.rgb,_FlashColor.rgb,_FlashAmount);
+		
 		c.rgb *= c.a;
+		
 
 		return c;
 	}

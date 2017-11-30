@@ -206,6 +206,11 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(enemyHolder.GetChild(i).gameObject);
         }
+
+        for (int i = 0; i<transform.childCount;i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
         
     }    
 }
