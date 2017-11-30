@@ -123,6 +123,8 @@
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\ResetableSaveData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\ResettableScriptableObject.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DropItem.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\GameEvent.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\GameEventListener.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\myItemDropTable.cs" />
   </ItemGroup>
   <ItemGroup>

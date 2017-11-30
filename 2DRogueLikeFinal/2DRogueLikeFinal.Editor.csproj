@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Editor\AllWeaponsEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\GameEventEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Shader\DIffuseFlashColor.shader" />
