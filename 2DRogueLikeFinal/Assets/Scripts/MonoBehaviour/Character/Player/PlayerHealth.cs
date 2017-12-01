@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerHealth : CharacterHealth
 {
-
     public IntVariable playerHealth;
 
     public bool isResetableHp = true;
@@ -24,7 +23,20 @@ public class PlayerHealth : CharacterHealth
 
     public override void TakeDamage(int damage)
     {
+        playerHealth.ApplyChange(-damage);
+        PlayerDamaged.Raise();
 
+        if (playerHealth.value <= 0)
+        {
+            Dead();
+            PlayerDead.Raise();
+        }
+    }
+
+    private void Dead()
+    {
+        Debug.Log("PlayerDead");
+        GetComponent<Animator>().SetTrigger("Dead");
     }
 
     private void Update()

@@ -11,7 +11,7 @@ public class SimpleTrap : Trap
 
     private float timer;
 
-    private List<Collider2D> colliderCharacter = new List<Collider2D>();
+    public List<Collider2D> colliderCharacter = new List<Collider2D>();
 
     private void Start()
     {
@@ -30,15 +30,21 @@ public class SimpleTrap : Trap
 
     public override void Attack()
     {
-        foreach (var collider in colliderCharacter)
-        {
-            if (!collider)
+       
+            for (int i = 0; i<colliderCharacter.Count;i++)
             {
-                var characterHealth = collider.GetComponent<CharacterHealth>();
-                if (characterHealth.healthPoints > 0)
+                var collider = colliderCharacter[i];
+                if (collider)
+                {
+                    var characterHealth = collider.GetComponent<CharacterHealth>();
                     characterHealth.TakeDamage(damage);
+                }
+                else if (colliderCharacter.Contains(collider))
+                {
+                    colliderCharacter.Remove(collider);
+                }
             }
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

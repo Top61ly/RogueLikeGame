@@ -10,7 +10,7 @@ public class GUIPlayerHealth : MonoBehaviour
 
     public Image healthPoint;
 
-    private void OnEnable()
+    private void Start()
     {
         for (int i = 0; i<playerMaxHealth.value;i++)
         {
@@ -21,7 +21,7 @@ public class GUIPlayerHealth : MonoBehaviour
 
     public void CheckHealth()
     {
-        for (int i = playerMaxHealth.value - 1; i >= playerHealth.value;i--)
+        for (int i = playerMaxHealth.value - 1; i >=( playerHealth.value>0?playerHealth.value:0);i--)
         {
             var image = transform.GetChild(i).GetComponent<Image>();
             image.color = new Color(1, 1, 1, 0.2f);

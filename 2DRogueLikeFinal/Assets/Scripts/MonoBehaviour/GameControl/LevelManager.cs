@@ -6,109 +6,106 @@ using System;
 
 public class LevelManager : MonoBehaviour
 {
-    public int height;
-    public int width;
+	public int height;
+	public int width;
 
-    public float tileSize = 0.5f;
-    
+	public float tileSize = 0.5f;
+	
 	public List<GameObject> enemiesCanGenerate;
-    public GameObject enemyGenerateEffect;
-      
-    public List<GameObject> groundList;
-    public GameObject groundBoundary;
+	public GameObject enemyGenerateEffect;
+	  
+	public List<GameObject> groundList;
+	public GameObject groundBoundary;
 
-    public Transform enemyHolder;
-    public Transform itemHolder;
+	public Transform enemyHolder;
+	public Transform itemHolder;
+  
+	public IntRange totalEnemyWaveRange;
+	public IntRange totalEnemyNumberPerWaveRange;
 
-    public myItemDropTable itemDropTable;
-
-    public IntRange totalEnemyWaveRange;
-    public IntRange totalEnemyNumberPerWaveRange;
-
-    public GameObject door;
+	public GameObject door;
 
 
-    //Control the player Generate
-    public GameObject playerGenerateEffect;
-    private GameObject player;
-    private Vector3 generatePoint = new Vector3();
+	//Control the player Generate
+	public GameObject playerGenerateEffect;
+	private GameObject player;
+	private Vector3 generatePoint = new Vector3();
    
-    private List<EnemyHealth> enemies = new List<EnemyHealth>();//enemies Generate From this
+	private List<EnemyHealth> enemies = new List<EnemyHealth>();//enemies Generate From this
 
-    private Boundary tileBoundary;
+	private Boundary tileBoundary;
 
-    private int totalWaveNumber;
-    private int waveIndex = 1;
+	private int totalWaveNumber;
+	private int waveIndex = 1;
 
  
-    private void Start()
+	private void Start()
 	{
-        player = Instantiate(Resources.Load("Prefabs/Player") as GameObject);
+		player = Instantiate(Resources.Load("Prefabs/Player") as GameObject);
 
-        totalWaveNumber = totalEnemyWaveRange.Random;
+		totalWaveNumber = totalEnemyWaveRange.Random;
 
-        tileBoundary = new Boundary(0, width * tileSize, 0, height * tileSize);
+		tileBoundary = new Boundary(0, width * tileSize, 0, height * tileSize);
 
-        GenerateBoard();
+		GenerateBoard();
 
-        StartCoroutine(GeneratePlayer());  //Generate player and enemy;      
+		StartCoroutine(GeneratePlayer());  //Generate player and enemy;      
 
-    }
+	}
 
 
-    private void GenerateBoard()
-    {
-        for (int i = 0;i<width;i++)
-            for (int j = 0; j<height;j++)
-            {
-                Vector3 position = new Vector3(i * tileSize, j * tileSize, 0);
-                Instantiate(GenerateFromGameObjectList(groundList), position, Quaternion.identity,transform);
-            }
-        for (int i = -1;i<width+1;i++)
-        {
-            Vector3 position = new Vector3(i * tileSize, -tileSize, 0);
-            var go = Instantiate(groundBoundary, position, Quaternion.identity,transform);
-            var sr = go.GetComponentInChildren<SpriteRenderer>();
-            sr.sortingOrder = 1;sr.sortingLayerName = "Effects";
-            position = new Vector3(i * tileSize, height*tileSize, 0);
-            go = Instantiate(groundBoundary, position, Quaternion.identity,transform);
-            go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -2000;
-        }
-        for (int j = 0;j<height;j++)
-        {
-            Vector3 position = new Vector3(-tileSize, j*tileSize, 0);
-            var go = Instantiate(groundBoundary, position, Quaternion.identity,transform);
-            go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -j;
-            position = new Vector3( tileSize*width, j*tileSize, 0);
-            go = Instantiate(groundBoundary, position, Quaternion.identity,transform);
-            go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -j;
+	private void GenerateBoard()
+	{
+		for (int i = 0;i<width;i++)
+			for (int j = 0; j<height;j++)
+			{
+				Vector3 position = new Vector3(i * tileSize, j * tileSize, 0);
+				Instantiate(GenerateFromGameObjectList(groundList), position, Quaternion.identity,transform);
+			}
+		for (int i = -1;i<width+1;i++)
+		{
+			Vector3 position = new Vector3(i * tileSize, -tileSize, 0);
+			var go = Instantiate(groundBoundary, position, Quaternion.identity,transform);
+			var sr = go.GetComponentInChildren<SpriteRenderer>();
+			sr.sortingOrder = 1;sr.sortingLayerName = "Effects";
+			position = new Vector3(i * tileSize, height*tileSize, 0);
+			go = Instantiate(groundBoundary, position, Quaternion.identity,transform);
+			go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -2000;
+		}
+		for (int j = 0;j<height;j++)
+		{
+			Vector3 position = new Vector3(-tileSize, j*tileSize, 0);
+			var go = Instantiate(groundBoundary, position, Quaternion.identity,transform);
+			go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -j;
+			position = new Vector3( tileSize*width, j*tileSize, 0);
+			go = Instantiate(groundBoundary, position, Quaternion.identity,transform);
+			go.GetComponentInChildren<SpriteRenderer>().sortingOrder = -j;
 
-        }
-    }
+		}
+	}
 
 	private IEnumerator GenerateEnemies()
 	{
-        List<Vector3> enemiesPoints = new List<Vector3>();
-        for (int i = 0; i<totalEnemyNumberPerWaveRange.Random;i++)
-        {       
-            FloatRange x = new FloatRange(1, tileBoundary.maxX-1);
-            FloatRange y = new FloatRange(1, tileBoundary.maxY-1);
-            var position = new Vector3(x.Random,y.Random,0);
-            Instantiate(enemyGenerateEffect, position, Quaternion.identity,enemyHolder);
-            enemiesPoints.Add(position);
+		List<Vector3> enemiesPoints = new List<Vector3>();
+		for (int i = 0; i<totalEnemyNumberPerWaveRange.Random;i++)
+		{       
+			FloatRange x = new FloatRange(1, tileBoundary.maxX-1);
+			FloatRange y = new FloatRange(1, tileBoundary.maxY-1);
+			var position = new Vector3(x.Random,y.Random,0);
+			Instantiate(enemyGenerateEffect, position, Quaternion.identity,enemyHolder);
+			enemiesPoints.Add(position);
 		}
 
-        yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.5f);
 
-        for (int i = 0; i < enemiesPoints.Count; i++)
-        {
-            var position = enemiesPoints[i];
-            position += new Vector3(0.1f, 0, 0);
-            var spawnEnemey = Instantiate(GenerateFromGameObjectList(enemiesCanGenerate), position, Quaternion.identity,enemyHolder) as GameObject;
-            var enemyHealth = spawnEnemey.GetComponent<EnemyHealth>();
-            enemies.Add(enemyHealth);
-            enemyHealth.OnEnemyDestroyed += OnEnemyDestroyed;
-        }
+		for (int i = 0; i < enemiesPoints.Count; i++)
+		{
+			var position = enemiesPoints[i];
+			position += new Vector3(0.1f, 0, 0);
+			var spawnEnemey = Instantiate(GenerateFromGameObjectList(enemiesCanGenerate), position, Quaternion.identity,enemyHolder) as GameObject;
+			var enemyHealth = spawnEnemey.GetComponent<EnemyHealth>();
+			enemies.Add(enemyHealth);
+		}
 	}
 
 	private void OnEnemyDestroyed(object sender, EventArgs e)
@@ -119,92 +116,89 @@ public class LevelManager : MonoBehaviour
 			EnemyClear();
 		}
 	}
-    
-    private GameObject GenerateFromGameObjectList(List<GameObject> gameObjects)
-    {
-        int length = gameObjects.Count;
-        length = UnityEngine.Random.Range(0, length);
-        return gameObjects[length];
-    }
+	
+	private GameObject GenerateFromGameObjectList(List<GameObject> gameObjects)
+	{
+		int length = gameObjects.Count;
+		length = UnityEngine.Random.Range(0, length);
+		return gameObjects[length];
+	}
 
 	private void EnemyClear()
 	{
-        //Check if Enemy all destroyed if no generate next wave, yes open the door
-        waveIndex++;
-        if (waveIndex > totalWaveNumber)
-        {
+		//Check if Enemy all destroyed if no generate next wave, yes open the door
+		waveIndex++;
+		if (waveIndex > totalWaveNumber)
+		{
 
-            //this levele Clear
-            Debug.Log("Enemy Clear");
+			//this levele Clear
+			Debug.Log("Enemy Clear");
 
-            var player = GameObject.FindGameObjectWithTag("Player").transform;
+			var player = GameObject.FindGameObjectWithTag("Player").transform;     
+			GenerateDoor();
+		}
+		else
+			StartCoroutine(GenerateEnemies());
+	}
 
-            Instantiate(itemDropTable.generateItem(), player.position, Quaternion.identity,enemyHolder);
+	private void GenerateDoor()
+	{
+		FloatRange boundaryWidth = new FloatRange(1, tileBoundary.maxX-tileSize);
+		FloatRange boundaryHeight = new FloatRange(1, tileBoundary.maxY-tileSize);
 
-            GenerateDoor();
-        }
-        else
-            StartCoroutine(GenerateEnemies());
-    }
+		var point = new Vector3(boundaryWidth.Random, boundaryHeight.Random, 0);
 
-    private void GenerateDoor()
-    {
-        FloatRange boundaryWidth = new FloatRange(1, tileBoundary.maxX-tileSize);
-        FloatRange boundaryHeight = new FloatRange(1, tileBoundary.maxY-tileSize);
+		GameManager.instance.generatePoint = point;  //GameManager Get the next level player generate Point;
 
-        var point = new Vector3(boundaryWidth.Random, boundaryHeight.Random, 0);
+		var go = Instantiate(door, point, Quaternion.identity);
+		go.GetComponent<TriggerTheDoor>().levelComplete += LevelComplete;
 
-        GameManager.instance.generatePoint = point;  //GameManager Get the next level player generate Point;
+		go.GetComponent<BoxCollider2D>().enabled = true;
+	}
 
-        var go = Instantiate(door, point, Quaternion.identity);
-        go.GetComponent<TriggerTheDoor>().levelComplete += LevelComplete;
+	private IEnumerator GeneratePlayer()
+	{
 
-        go.GetComponent<BoxCollider2D>().enabled = true;
-    }
+		generatePoint = GameManager.instance.generatePoint;
 
-    private IEnumerator GeneratePlayer()
-    {
+		Instantiate(playerGenerateEffect, generatePoint, Quaternion.identity,enemyHolder);
 
-        generatePoint = GameManager.instance.generatePoint;
+		yield return new WaitForSeconds(0.5f);        
 
-        Instantiate(playerGenerateEffect, generatePoint, Quaternion.identity,enemyHolder);
+		player.SetActive(true);
 
-        yield return new WaitForSeconds(0.5f);        
+		player.transform.position = generatePoint;
 
-        player.SetActive(true);
+		StartCoroutine(GenerateEnemies());
+	}
 
-        player.transform.position = generatePoint;
+	public void NextLevel()
+	{
+		GenerateBoard();
+		StartCoroutine(GeneratePlayer());
+	}
 
-        StartCoroutine(GenerateEnemies());
-    }
+	private void LevelComplete(object sender, EventArgs e)
+	{
+		player.SetActive(false);
+		
+		waveIndex = 1;
 
-    public void NextLevel()
-    {
-        GenerateBoard();
-        StartCoroutine(GeneratePlayer());
-    }
+		totalWaveNumber = totalEnemyWaveRange.Random;
 
-    private void LevelComplete(object sender, EventArgs e)
-    {
-        player.SetActive(false);
-        
-        waveIndex = 1;
+		Debug.Log(totalWaveNumber);
 
-        totalWaveNumber = totalEnemyWaveRange.Random;
+		for (int i = 0; i<enemyHolder.childCount;i++)
+		{
+			Destroy(enemyHolder.GetChild(i).gameObject);
+		}
 
-        Debug.Log(totalWaveNumber);
-
-        for (int i = 0; i<enemyHolder.childCount;i++)
-        {
-            Destroy(enemyHolder.GetChild(i).gameObject);
-        }
-
-        for (int i = 0; i<transform.childCount;i++)
-        {
-            Destroy(transform.GetChild(i).gameObject);
-        }
-        
-    }    
+		for (int i = 0; i<transform.childCount;i++)
+		{
+			Destroy(transform.GetChild(i).gameObject);
+		}
+		
+	}    
 }
 
 

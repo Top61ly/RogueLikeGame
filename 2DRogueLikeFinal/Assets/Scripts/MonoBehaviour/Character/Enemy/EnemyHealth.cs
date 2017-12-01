@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 
 public enum EnemyType
@@ -13,7 +12,10 @@ public enum EnemyType
 
 public class EnemyHealth : CharacterHealth
 {
-    public EventHandler OnEnemyDestroyed;
+    public int healthPoints;
+
+    public EnemyHealthRunTimeSet enemyHealthSet;
+    public GameEvent enemyDead;
 
     private EnemyMovement enemyMovement;
 
@@ -22,6 +24,16 @@ public class EnemyHealth : CharacterHealth
 
     private CircleCollider2D circleCollider2D;
     private Animator animator;
+
+    private void OnEnable()
+    {
+        enemyHealthSet.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        enemyHealthSet.Remove(this);
+    }
 
     private void Awake()
     {
@@ -42,10 +54,7 @@ public class EnemyHealth : CharacterHealth
         enemyMovement.enabled = false;
         animator.SetTrigger("Dead");
         gameObject.layer = LayerMask.NameToLayer("Corps");
-        spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f, 1f);
-        
-        if (OnEnemyDestroyed != null)
-            OnEnemyDestroyed.Invoke(this, new EventArgs());
+        spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f, 1f);       
     }
 
     public override void TakeDamage(int damage)
@@ -56,6 +65,7 @@ public class EnemyHealth : CharacterHealth
         if (healthPoints <= 0)
         {
             OnDestroyed();
+            enemyDead.Raise();
         }
    }
 

@@ -265,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 1
   healthPoints: 10
+  enemyHealthSet: {fileID: 11400000, guid: 6eb02a5eaa1d5e143995e396f6ed082f, type: 2}
   enemyType: 0
   spriteRenderer: {fileID: 212273489117254996}
 --- !u!114 &114148979124324492

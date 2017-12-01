@@ -49,10 +49,7 @@ public abstract class ProjectionBullets : Bullets
 
             if (characterHealth.playerIndex != 0 && effectTime>0 && enemyMovement.isEffecting == false)
             {
-                if (characterHealth.healthPoints <= 0)
-                    effectForce *= 2;
-                //if (!enemyMovement.isWalking)
-                    characterHealth.StartCoroutine(HitEffect(effectForce, effectTime));
+                characterHealth.StartCoroutine(HitEffect(effectForce, effectTime));
             }
 
 
