@@ -32,9 +32,7 @@ public class LevelManager : MonoBehaviour
     public GameObject playerGenerateEffect;
     private GameObject player;
     private Vector3 generatePoint = new Vector3();
-
-    //感谢猪猪猪mei送的辣条----------Memeda~~
-
+   
     private List<EnemyHealth> enemies = new List<EnemyHealth>();//enemies Generate From this
 
     private Boundary tileBoundary;
@@ -42,13 +40,9 @@ public class LevelManager : MonoBehaviour
     private int totalWaveNumber;
     private int waveIndex = 1;
 
-    //Gui level COmplete
-    public GameObject LevelCompletePanel;
-
+ 
     private void Start()
 	{
-        LevelCompletePanel.SetActive(false);
-
         player = Instantiate(Resources.Load("Prefabs/Player") as GameObject);
 
         totalWaveNumber = totalEnemyWaveRange.Random;
@@ -193,9 +187,7 @@ public class LevelManager : MonoBehaviour
     private void LevelComplete(object sender, EventArgs e)
     {
         player.SetActive(false);
-
-        LevelCompletePanel.SetActive(true);
-
+        
         waveIndex = 1;
 
         totalWaveNumber = totalEnemyWaveRange.Random;

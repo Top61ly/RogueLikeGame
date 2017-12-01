@@ -50,50 +50,44 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEditor">
-      <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Timeline">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
-      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>E:/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>E:/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\raytest.cs" />
-    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\BoardCreator.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\Boundary.cs" />
-    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\Corridor.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\FloatRange.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\IntRange.cs" />
-    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\Room.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\BoardCreater\MeshGenerator.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Camera\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Camera\CameraOrthographic.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Character\CharacterHealth.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Character\CharacterThinker.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Character\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Character\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Character\Enemy\EnemyMovement.cs" />
@@ -114,18 +108,26 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\RangeWeapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\ShotRangeWeapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\Weapon.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\SortingOrderSetinStart.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Trap\SimpleTrap.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Trap\Trap.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\UI\FloatingText.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\UI\GUIPlayerHealth.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\UI\PopupTextControl.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\BoardCollection.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Brain\Brain.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Brain\PlayerControlBrain.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\AllWeapons.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\EveryLevelResources.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\ResetableSaveData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DataControl\ResettableScriptableObject.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\DropItem.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\FloatVariable.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\GameEvent.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\GameEventListener.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\IntVariable.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\myItemDropTable.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Vector3Variable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Shader\DIffuseFlashColor.shader" />

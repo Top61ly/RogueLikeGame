@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 movement;
 
+    public Vector2 facePosition;
+
     public bool isFacingRight = true;   
 
     public void Awake()
@@ -25,17 +27,12 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        
+        Move();
 
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        Turn();
 
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        Move(h,v);
-
-        Turn(mousePosition);
-
-        Animating(h, v);
+        Animating();
 
     }
 
@@ -44,23 +41,21 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer.sortingOrder = (int)Camera.main.WorldToScreenPoint(spriteRenderer.bounds.min).y * -1;
     }
 
-    private void Animating(float h, float v)
+    private void Animating()
     {
-        bool walking = h != 0f || v != 0;
+        bool walking = movement.magnitude > 0.01f;
 
         animator.SetBool("isWalking", walking);
     }
 
-    private void Move(float h, float v)
+    private void Move()
     {
-        movement.Set(h, v);
-
         rb.MovePosition(rb.position + movement.normalized*moveSpeed*Time.deltaTime);    
     }
     
-    private void Turn(Vector2 mousePosition)
+    private void Turn()
     {
-        float viewDirection = mousePosition.x - transform.position.x;
+        float viewDirection = facePosition.x - transform.position.x;
         if (viewDirection > 0 && !isFacingRight)
             flip();
         else if (viewDirection < 0 && isFacingRight)

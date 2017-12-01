@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: DefaultFlashColor
-  m_Shader: {fileID: 4800000, guid: 887cd189cf5d70c4e9f742119a05d4bb, type: 3}
+  m_Shader: {fileID: 4800000, guid: e2300a61bf4c6874ca68144faf9beb11, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
