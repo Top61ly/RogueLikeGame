@@ -115,6 +115,8 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\RangeWeapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\ShotRangeWeapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\Weapon.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\ObjectPool\PoolManager.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\ObjectPool\PoolObject.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\SortingOrderSetinStart.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Trap\SimpleTrap.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Trap\Trap.cs" />

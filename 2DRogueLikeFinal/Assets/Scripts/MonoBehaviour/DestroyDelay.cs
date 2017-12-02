@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyDelay : MonoBehaviour
+public class DestroyDelay : PoolObject
 {
     public float destroyDelay = 0.5f;
 
-	void Start ()
+    private void Awake()
     {
-        Destroy(gameObject, destroyDelay);		
-	}	
+        StartCoroutine(DelayDestroy());
+    }
+
+
+    IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(destroyDelay);
+        Destroy();
+    }	
 }

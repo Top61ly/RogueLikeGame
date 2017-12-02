@@ -16,6 +16,11 @@ public abstract class ProjectionBullets : Bullets
 
     public EnemyMovement enemyMovement;
 
+    private void Start()
+    {
+        PoolManager.instance.CreatePool(explosion, 20);
+    }
+
     protected virtual IEnumerator HitEffect(float effectForce,float effectTime)
     {
         enemyMovement.isEffecting = true;
@@ -43,7 +48,7 @@ public abstract class ProjectionBullets : Bullets
         {
             enemyMovement = characterHealth.GetComponent<EnemyMovement>();
             if (explosion)
-                Instantiate(explosion, transform.position, Quaternion.identity);
+                PoolManager.instance.ReuseObject(explosion, transform.position, Quaternion.identity);
             //if add effect
             characterHealth.TakeDamage(damage);                      
 
@@ -53,12 +58,12 @@ public abstract class ProjectionBullets : Bullets
             }
 
 
-            Destroy(gameObject);
+            Destroy();
         }
         else if (!characterHealth)
         {
-            Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            PoolManager.instance.ReuseObject(explosion, transform.position, Quaternion.identity);
+            Destroy();
         }        
     }
 }

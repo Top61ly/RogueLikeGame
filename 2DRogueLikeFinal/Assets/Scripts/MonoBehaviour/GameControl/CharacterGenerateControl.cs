@@ -42,6 +42,7 @@ public class CharacterGenerateControl : MonoBehaviour
 
     private void GenerateNextWave()
     {
+        Debug.Log("Generate Enemies");
 
     }
 }

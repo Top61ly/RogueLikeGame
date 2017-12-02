@@ -29,6 +29,7 @@ public class LinearRangeWeapon : RangeWeapon
             bullet.playerIndex = playerIndex;
             bullet.effectForce = effectForce;
             bullet.effectTime = effectTime;
+            PoolManager.instance.CreatePool(bullets, 20);
         }
         ImmediateDisableEffect();
     }
@@ -38,13 +39,16 @@ public class LinearRangeWeapon : RangeWeapon
         if (weaponAnimator)
             weaponAnimator.SetTrigger("Shoot");
         direction = (startPosition.position - endPosition.position).normalized;
-        GameObject go = Instantiate(bullets, startPosition.position, Quaternion.identity) as GameObject;
+        
+        GameObject go = PoolManager.instance.ReuseObject(bullets, startPosition.position, Quaternion.identity);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle += angleRange.Random;
         var goQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
         go.transform.rotation = goQuaternion;
         direction = goQuaternion * Vector3.right;
-        go.GetComponent<Rigidbody2D>().AddForce(direction * shootForce);
+        var rigidBody2D = go.GetComponent<Rigidbody2D>();
+        rigidBody2D.velocity = new Vector2();
+        rigidBody2D.AddForce(direction * shootForce);
     }
 
     protected override void ImmediateEnableEffect()
