@@ -91,8 +91,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 0
   damage: 10
-  effectTime: 0
-  effectForce: 0
+  effectTime: 0.3
+  effectForce: 1000
   flashTime: 0.01
   explosion: {fileID: 1904422459134866, guid: 1172f3d1f7065fc4ca0ce87ed282e00c, type: 2}
   characterHealth: {fileID: 0}

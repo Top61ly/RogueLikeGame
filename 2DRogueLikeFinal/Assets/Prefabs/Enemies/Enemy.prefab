@@ -231,6 +231,7 @@ MonoBehaviour:
   playerIndex: 1
   healthPoints: 10
   enemyHealthSet: {fileID: 11400000, guid: 6eb02a5eaa1d5e143995e396f6ed082f, type: 2}
+  enemyDead: {fileID: 11400000, guid: cbcbff394dbe71e45948a8d6b20fed6e, type: 2}
   enemyType: 0
   spriteRenderer: {fileID: 212045510213224692}
 --- !u!114 &114642282041701756

@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class TriggerTheDoor : MonoBehaviour
 {
-    public EventHandler levelComplete;
-
-    
+    public EventHandler levelComplete;    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {        

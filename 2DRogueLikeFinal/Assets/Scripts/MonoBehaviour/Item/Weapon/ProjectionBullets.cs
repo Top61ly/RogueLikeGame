@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ProjectionBullets : Bullets
-{  
-    public float effectTime = 0;
+{
+    public float effectTime;
 
-    public float effectForce = 0;
+    public float effectForce;
 
     public float flashTime = 0.01f;
 
@@ -54,6 +54,7 @@ public abstract class ProjectionBullets : Bullets
 
             if (characterHealth.playerIndex != 0 && effectTime>0 && enemyMovement.isEffecting == false)
             {
+                Debug.Log("hit");
                 characterHealth.StartCoroutine(HitEffect(effectForce, effectTime));
             }
 

@@ -54,7 +54,9 @@ public class EnemyHealth : CharacterHealth
         enemyMovement.enabled = false;
         animator.SetTrigger("Dead");
         gameObject.layer = LayerMask.NameToLayer("Corps");
-        spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f, 1f);       
+        spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f, 1f);
+        enabled = false;
+        enemyDead.Raise();
     }
 
     public override void TakeDamage(int damage)
@@ -65,7 +67,6 @@ public class EnemyHealth : CharacterHealth
         if (healthPoints <= 0)
         {
             OnDestroyed();
-            enemyDead.Raise();
         }
    }
 

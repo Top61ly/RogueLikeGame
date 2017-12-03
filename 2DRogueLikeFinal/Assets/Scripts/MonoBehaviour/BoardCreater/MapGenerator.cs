@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class MapGenerator : MonoBehaviour
+[CreateAssetMenu]
+public class MapGenerator : ScriptableObject
 {
 
     public int width;
@@ -12,6 +13,8 @@ public class MapGenerator : MonoBehaviour
     public string seed;
     public bool useRandomSeed;
 
+    private Transform mapParent;
+
     public BoardCollection boardCollection;
 
     [Range(0, 100)]
@@ -19,19 +22,29 @@ public class MapGenerator : MonoBehaviour
 
     int[,] map;
 
-    void Start()
+    public void StartGenerateMap(Transform transform)
     {
+        mapParent = transform;
+
+        for (int i = 0;i<transform.childCount;i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
         GenerateMap();
     }
 
-    //void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        GenerateMap();
-    //    }
-    //}
-
+    public List<Coord> GetCoordList(int index)
+    {
+        List<Coord> result = new List<Coord>();
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++)
+            {
+                if (map[i, j] == index)
+                    result.Add(new Coord(i, j));
+            }
+        return result;
+    }
+   
     void GenerateMap()
     {
         map = new int[width, height];
@@ -42,13 +55,7 @@ public class MapGenerator : MonoBehaviour
             SmoothMap();
         }
 
-        ProcessMap();
-
-        if (transform.childCount>0)
-        {
-            for (int i = 0; i < transform.childCount; i++)
-                Destroy(transform.GetChild(i).gameObject);
-        }
+        ProcessMap();        
 
         for (int x = 0; x < width; x++)
         {
@@ -67,7 +74,7 @@ public class MapGenerator : MonoBehaviour
                 if (map[i, j] == 0)
                 {
                     Vector3 position = new Vector3(-width / 4 + 0.5f*i , -height/4+ j * 0.5f, 0);
-                    Instantiate(boardCollection.boards[UnityEngine.Random.Range(0, boardCollection.boards.Count)], position, Quaternion.identity, transform);
+                    Instantiate(boardCollection.boards[UnityEngine.Random.Range(0, boardCollection.boards.Count)], position, Quaternion.identity, mapParent);
                     for (int m = i - 1; m <= i + 1; m++)
                         for (int n = j - 1; n <= j + 1; n++)
                         {
@@ -83,7 +90,7 @@ public class MapGenerator : MonoBehaviour
                 if (map[i, j] == 2)
                 {
                     Vector3 position = new Vector3(-width / 4 + 0.5f * i, -height / 4 + j * 0.5f, 0);
-                    Instantiate(boardCollection.boundary, position, Quaternion.identity, transform);
+                    Instantiate(boardCollection.boundary, position, Quaternion.identity, mapParent);
                 }
             }
 
@@ -461,18 +468,9 @@ public class MapGenerator : MonoBehaviour
         return wallCount;
     }
 
-    struct Coord
-    {
-        public int tileX;
-        public int tileY;
+    
 
-        public Coord(int x, int y)
-        {
-            tileX = x;
-            tileY = y;
-        }
-    }
-
+    
 
     class Room : IComparable<Room>
     {
@@ -547,5 +545,17 @@ public class MapGenerator : MonoBehaviour
         {
             return otherRoom.roomSize.CompareTo(roomSize);
         }
+    }
+}
+
+public struct Coord
+{
+    public int tileX;
+    public int tileY;
+
+    public Coord(int x, int y)
+    {
+        tileX = x;
+        tileY = y;
     }
 }

@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224270823800655462}
-  - component: {fileID: 114820263482598564}
   - component: {fileID: 114000553001290600}
+  - component: {fileID: 114735048592582064}
   m_Layer: 10
   m_Name: PopupTextParent
   m_TagString: Untagged
@@ -109,6 +109,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 10
+--- !u!114 &114735048592582064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1080101856481702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a3b9c631bfeeb429ae9eccf3b74b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 0.5
 --- !u!114 &114788498337458530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,18 +135,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &114820263482598564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1080101856481702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658def632ae1e3e4d95d1445185b3872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyDelay: 1
 --- !u!222 &222547423719834268
 CanvasRenderer:
   m_ObjectHideFlags: 1
