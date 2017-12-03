@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ac1c2f544e6a54faac76a1d45b05e1, type: 3}
   m_Name: MapGenerator
   m_EditorClassIdentifier: 
-  width: 80
-  height: 80
-  seed: 80
+  width: 40
+  height: 40
+  seed: 70
   useRandomSeed: 1
   boardCollection: {fileID: 11400000, guid: 9f9b385cb3399c448ae888c0fbafa6e6, type: 2}
   randomFillPercent: 45

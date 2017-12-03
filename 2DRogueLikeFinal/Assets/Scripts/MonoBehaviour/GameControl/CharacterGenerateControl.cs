@@ -8,17 +8,30 @@ public class CharacterGenerateControl : MonoBehaviour
 
     public int waveIndex = 1;
 
+    public IntRange enemyRange;
+    public IntRange enemyWaveRange;
+
     public EnemyHealthRunTimeSet enemyHealthSet;
+
+    public List<GameObject> enemyGameobjectList;
+
+    public GameObject player;
 
     public GameObject door;
 
-    private List<Coord> characterTiles = new List<Coord>();
+    public GameObject playerGenerateEffect;
+
+    public GameObject enemyGenerateEffect;  
+
     public MapGenerator mapGenerator;
+
+    private List<Coord> characterTiles = new List<Coord>();
 
     private void Start()
     {
         mapGenerator.StartGenerateMap(transform);
         characterTiles = mapGenerator.GetCoordList(0);
+       // PoolManager.instance.CreatePool(player, 1);
         PoolManager.instance.CreatePool(door, 1);
     }
 
@@ -28,11 +41,9 @@ public class CharacterGenerateControl : MonoBehaviour
             return;
 
         waveIndex++;
-        Debug.Log(waveIndex);
+
         if (isLevelClear())
-        {
-            GenerateExit();
-        }
+            GenerateExit();        
         else
         {
             GenerateNextWave();
@@ -53,14 +64,25 @@ public class CharacterGenerateControl : MonoBehaviour
 
     private void GenerateNextWave()
     {
-        Debug.Log("Generate Enemies");
+        int number = enemyRange.Random;
+
+        for (int i = 0; i < number ; i++)
+        {
+            int index = Random.Range(0, enemyGameobjectList.Count);
+
+            Instantiate(enemyGameobjectList[index], GetCanGeneratePosition(), Quaternion.identity);            
+        }
     }
 
     private Vector3 GetCanGeneratePosition()
     {
         Coord index = characterTiles[Random.Range(0, characterTiles.Count)];
         Vector3 result = new Vector3(-mapGenerator.width / 4 + 0.5f * index.tileX, -mapGenerator.height / 4 + index.tileY * 0.5f, 0);
-        Debug.Log(index.tileX + "   " + index.tileY);
         return result;
     }
+
+    //private IEnumerator GenerateSingleEnemy(int index)
+    //{
+
+    //}
 }

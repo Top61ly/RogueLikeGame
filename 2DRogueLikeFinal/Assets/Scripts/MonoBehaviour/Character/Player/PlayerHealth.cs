@@ -35,8 +35,11 @@ public class PlayerHealth : CharacterHealth
 
     private void Dead()
     {
-        Debug.Log("PlayerDead");
         GetComponent<Animator>().SetTrigger("Dead");
+        gameObject.layer = LayerMask.NameToLayer("Corps");
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<PlayerAttack>().enabled = false;
+        enabled = false;
     }
 
     private void Update()
