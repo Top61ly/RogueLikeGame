@@ -9,7 +9,7 @@ public class PoolObject : MonoBehaviour
 
     }
 
-    protected void Destroy()
+    public virtual void Destroy()
     {
         gameObject.SetActive(false);
     }

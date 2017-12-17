@@ -21,8 +21,7 @@ public class EnemyHealth : CharacterHealth
 
     public EnemyType enemyType = EnemyType.Usual;
     public SpriteRenderer spriteRenderer;    
-
-    private CircleCollider2D circleCollider2D;
+    
     private Animator animator;
 
     private void OnEnable()
@@ -39,7 +38,6 @@ public class EnemyHealth : CharacterHealth
     {
         animator = GetComponent<Animator>();
         enemyMovement = GetComponent<EnemyMovement>();
-        circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

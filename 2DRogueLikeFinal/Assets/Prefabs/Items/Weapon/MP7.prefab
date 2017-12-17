@@ -297,7 +297,7 @@ MonoBehaviour:
   playerIndex: 0
   timerGap: 0.1
   damage: 1
-  bullets: {fileID: 1247222575750474, guid: 118b3496e3803404f9fe4bbb3d1e32ae, type: 2}
+  bullets: {fileID: 1906187940820648, guid: db80afd845b80d14b89c1cded4c980b5, type: 2}
   weaponAnimator: {fileID: 95859625182782958}
   gunAudio: {fileID: 82623672738382090}
   shootForce: 1000

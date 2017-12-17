@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CharacterHealth : PoolObject
+public abstract class CharacterHealth : MonoBehaviour
 {
     public int playerIndex;    
 

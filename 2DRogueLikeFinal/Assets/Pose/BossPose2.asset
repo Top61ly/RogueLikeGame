@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: BossPose2
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: BossBone/body
+    localPosition: {x: -0.005842466, y: -1.128464, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.6955169, w: 0.7185098}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/New bone
+    localPosition: {x: 1.10172, y: 0.00000011920929, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.026219785, w: 0.99965626}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/New bone/head
+    localPosition: {x: 0.17449874, y: -0.0000000059944796, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.10555446, w: -0.99441355}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/r_arm
+    localPosition: {x: 0.5326543, y: 0.2142185, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.8876189, w: 0.46057874}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/r_arm/New bone
+    localPosition: {x: 0.44283712, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.13388517, w: 0.9909969}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/l_arm
+    localPosition: {x: 1.113826, y: -0.3171627, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.9888235, w: 0.14909118}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/l_arm/New bone
+    localPosition: {x: 1.0093868, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.31473306, w: 0.94918025}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/c1
+    localPosition: {x: -0.41871202, y: -0.26695514, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.9799052, w: 0.19946377}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/c2
+    localPosition: {x: -0.17713302, y: 0.29887176, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.85729456, w: 0.51482636}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/c2/New bone
+    localPosition: {x: 0.5782391, y: 0.000000059604645, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.008038992, w: 0.9999677}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/r_leg
+    localPosition: {x: -0.31330144, y: 0.15044083, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9901799, w: 0.13979964}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/r_leg/New bone
+    localPosition: {x: 0.74754995, y: -0.000000059604645, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.31116703, w: 0.9503553}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/r_leg/New bone/New bone
+    localPosition: {x: 0.915145, y: -0.0000004172325, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.49005207, w: 0.8716932}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/l_leg
+    localPosition: {x: -0.4350531, y: -0.07166901, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.99956244, w: 0.029581247}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/l_leg/New bone
+    localPosition: {x: 0.6374676, y: -0.000000014901161, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.1544112, w: 0.9880067}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: BossBone/body/l_leg/New bone/New bone
+    localPosition: {x: 1.1766883, y: -0.00000010617077, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.28743666, w: 0.9577997}
+    localScale: {x: 1, y: 1, z: 1}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 40
   height: 40
-  seed: 70
+  seed: 243.7
   useRandomSeed: 1
   boardCollection: {fileID: 11400000, guid: 9f9b385cb3399c448ae888c0fbafa6e6, type: 2}
-  randomFillPercent: 45
+  randomFillPercent: 37

@@ -15,12 +15,6 @@ public class PlayerHealth : CharacterHealth
     public GameEvent PlayerDamaged;
     public GameEvent PlayerDead;
 
-    private void Start()
-    {
-        if (isResetableHp)
-            playerHealth.SetValue(playerMaxHealth);                    
-    }
-
     public override void TakeDamage(int damage)
     {
         playerHealth.ApplyChange(-damage);

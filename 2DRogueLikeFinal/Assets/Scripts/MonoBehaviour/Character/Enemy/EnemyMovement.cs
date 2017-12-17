@@ -30,12 +30,12 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator;
 	private Rigidbody2D rigidBody2D;
 	private Transform player;
-	private SpriteRenderer spriteRenderer;
 	private CircleCollider2D circleCollider2D;
+
+    
 	   
 	void Awake ()
 	{
-		spriteRenderer = GetComponent<SpriteRenderer>(); 
 		animator = GetComponent<Animator>();
 		rigidBody2D = GetComponent<Rigidbody2D>();
 		circleCollider2D = GetComponent<CircleCollider2D>();
@@ -139,7 +139,7 @@ public class EnemyMovement : MonoBehaviour
 
         int a = 1 << LayerMask.NameToLayer("Environment");
 
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction,movement.magnitude,a);
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction,movement.magnitude+0.5f,a);
 
 		if ( hit.collider != null)
 		{

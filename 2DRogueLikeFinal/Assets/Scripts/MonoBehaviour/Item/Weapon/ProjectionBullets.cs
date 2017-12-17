@@ -54,7 +54,6 @@ public abstract class ProjectionBullets : Bullets
 
             if (characterHealth.playerIndex != 0 && effectTime>0 && enemyMovement.isEffecting == false)
             {
-                Debug.Log("hit");
                 characterHealth.StartCoroutine(HitEffect(effectForce, effectTime));
             }
 

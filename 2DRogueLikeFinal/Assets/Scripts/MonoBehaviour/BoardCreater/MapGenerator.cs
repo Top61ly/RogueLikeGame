@@ -406,7 +406,6 @@ public class MapGenerator : ScriptableObject
         if (useRandomSeed)
         {
             seed = (Time.time+UnityEngine.Random.Range(0,100)).ToString();
-            Debug.Log(seed);
         }
 
         System.Random pseudoRandom = new System.Random(seed.GetHashCode());

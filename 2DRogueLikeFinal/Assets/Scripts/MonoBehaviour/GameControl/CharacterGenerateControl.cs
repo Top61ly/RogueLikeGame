@@ -17,11 +17,15 @@ public class CharacterGenerateControl : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject lootBox;
+
     public GameObject door;
 
     public GameObject playerGenerateEffect;
 
-    public GameObject enemyGenerateEffect;  
+    public GameObject enemyGenerateEffect;
+
+    public Transform enemyHolder;
 
     public MapGenerator mapGenerator;
 
@@ -29,10 +33,16 @@ public class CharacterGenerateControl : MonoBehaviour
 
     private void Start()
     {
+        totalEnemyWave = enemyWaveRange.Random;
         mapGenerator.StartGenerateMap(transform);
         characterTiles = mapGenerator.GetCoordList(0);
-       // PoolManager.instance.CreatePool(player, 1);
+        PoolManager.instance.CreatePool(player, 1);
         PoolManager.instance.CreatePool(door, 1);
+        PoolManager.instance.CreatePool(lootBox, 1);
+        PoolManager.instance.CreatePool(playerGenerateEffect, 1);
+        PoolManager.instance.CreatePool(enemyGenerateEffect, enemyRange.m_Max);
+        StartCoroutine(GeneratePlayer(GetCanGeneratePosition()));
+        GenerateNextWave();
     }
 
     public void OnEnemyDead()
@@ -59,6 +69,7 @@ public class CharacterGenerateControl : MonoBehaviour
 
     private void GenerateExit()
     {
+        PoolManager.instance.ReuseObject(lootBox, GetCanGeneratePosition(), Quaternion.identity);
         PoolManager.instance.ReuseObject(door, GetCanGeneratePosition(), Quaternion.identity);
     }
 
@@ -70,7 +81,7 @@ public class CharacterGenerateControl : MonoBehaviour
         {
             int index = Random.Range(0, enemyGameobjectList.Count);
 
-            Instantiate(enemyGameobjectList[index], GetCanGeneratePosition(), Quaternion.identity);            
+            StartCoroutine(GenerateSingleEnemy(enemyGameobjectList[index], GetCanGeneratePosition()));            
         }
     }
 
@@ -81,8 +92,31 @@ public class CharacterGenerateControl : MonoBehaviour
         return result;
     }
 
-    //private IEnumerator GenerateSingleEnemy(int index)
-    //{
+    private IEnumerator GeneratePlayer(Vector3 position)
+    {
+        PoolManager.instance.ReuseObject(playerGenerateEffect, position, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
+        PoolManager.instance.ReuseObject(player, position,Quaternion.identity);
+    }
 
-    //}
+    private IEnumerator GenerateSingleEnemy(GameObject character,Vector3 position)
+    {
+        PoolManager.instance.ReuseObject(enemyGenerateEffect, position, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
+        Instantiate(character, position, Quaternion.identity, enemyHolder);
+    }
+
+    public void OnLevelStart()
+    {
+        for (int i = 0; i<enemyHolder.childCount;i++)
+        {
+            Destroy(enemyHolder.GetChild(i).gameObject);
+        }
+        mapGenerator.StartGenerateMap(transform);
+        characterTiles = mapGenerator.GetCoordList(0);
+        totalEnemyWave = enemyWaveRange.Random;
+        waveIndex = 1;
+        StartCoroutine(GeneratePlayer(GetCanGeneratePosition()));
+        GenerateNextWave();
+    }
 }
