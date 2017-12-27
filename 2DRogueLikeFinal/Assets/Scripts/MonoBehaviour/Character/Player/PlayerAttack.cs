@@ -10,8 +10,13 @@ public class PlayerAttack : MonoBehaviour
     //Check Enemey   
     public float checkRange;
 
+    public float searchRadius;
+
     public int enemyLayerMask;
     public Transform weaponTransform;
+
+    public Vector2 direction;
+
     private List<Collider2D> colliderEnemiesList;
    
     //Control the shoot
@@ -70,17 +75,32 @@ public class PlayerAttack : MonoBehaviour
     }
 
     Quaternion GetTarget()
-    {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    {       
 
-        float x = Mathf.Abs(mousePosition.x-transform.position.x);
-        float y = mousePosition.y-transform.position.y;
+        if (direction.magnitude <= 0)
+        {
+            Quaternion result = new Quaternion();
 
-        float angle = Mathf.Atan2(y, x)*Mathf.Rad2Deg;
-        
-        Quaternion result = Quaternion.AngleAxis(angle,new Vector3(0,0,1));          
+            Vector2 movement = playerMovement.movement.normalized;
 
-        return result;
+            float angle = Mathf.Atan2(movement.y,Mathf.Abs(movement.x));
+
+            result = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
+
+            return result;
+        }
+        else
+        {
+
+            float x = Mathf.Abs(direction.x);
+            float y = direction.y;
+
+            float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+
+            Quaternion result = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
+
+            return result;
+        }
     }
 
     void ChangeWeapon()

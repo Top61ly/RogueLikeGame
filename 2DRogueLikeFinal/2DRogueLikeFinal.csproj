@@ -133,6 +133,7 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\Bullets.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\HitDestroyBullets.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\LinearRangeWeapon.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\ProjectionBullets.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\RangeWeapon.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Item\Weapon\ShotRangeWeapon.cs" />
@@ -160,9 +161,11 @@
     <Compile Include="Assets\Scripts\ScriptableObject\GameEventListener.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\GameObjectDropTable.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\RuntimeSet.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\SingletonScriptableObject.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\Variable\FloatVariable.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\Variable\IntVariable.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\Variable\Vector3Variable.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\WeaponNameSingleton.cs" />
     <Compile Include="Assets\SystemSettingControl.cs" />
   </ItemGroup>
   <ItemGroup>

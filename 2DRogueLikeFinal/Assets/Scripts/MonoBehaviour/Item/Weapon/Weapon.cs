@@ -23,7 +23,7 @@ public abstract class Weapon : Item
         transform.GetComponent<BoxCollider2D>().enabled = false;
 
         weapon.GetComponent<BoxCollider2D>().enabled = true;
-        weapon.transform.SetParent(GameObject.Find("EnemyHolder").transform);
+      //  weapon.transform.SetParent(GameObject.Find("EnemyHolder").transform);
 
         playerAttack.weapon = this;
         Init();
@@ -37,7 +37,7 @@ public abstract class Weapon : Item
         DisableEffect();
     }
 
-    public abstract void Init();
+    public override abstract void Init();
     
     public abstract void TriggerWeapon();
     public abstract void DisableEffect();

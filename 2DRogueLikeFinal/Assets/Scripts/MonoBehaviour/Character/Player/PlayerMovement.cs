@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 movement;
 
-    public Vector2 facePosition;
+    public Vector2 direction;
 
     public bool isFacingRight = true;   
 
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Turn()
     {
-        float viewDirection = facePosition.x - transform.position.x;
+        float viewDirection = direction.x;
         if (viewDirection > 0 && !isFacingRight)
             flip();
         else if (viewDirection < 0 && isFacingRight)
