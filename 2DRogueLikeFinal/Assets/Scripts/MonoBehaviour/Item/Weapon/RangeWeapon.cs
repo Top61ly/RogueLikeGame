@@ -25,7 +25,8 @@ public abstract class RangeWeapon : Weapon
     }
 
     public override void Init()
-    {        
+    {
+        base.Init();
         bullets.GetComponent<Bullets>().damage = damage;
         SpecificInit();
     }

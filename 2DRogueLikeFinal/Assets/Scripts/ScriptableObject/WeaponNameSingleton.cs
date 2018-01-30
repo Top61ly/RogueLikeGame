@@ -9,22 +9,13 @@ public class WeaponNameSingleton : SingletonScriptableObject<WeaponNameSingleton
 
     public Color normalItemColor;
     public Color rareItemColor;
-    public Color superRareItemColor;
-        
-    private Transform _canvas;
+    public Color superRareItemColor;    
+  
     
-    /// <summary>
-    /// Set canvas transform
-    /// </summary>
-    /// <param name="canvas"></param>
-    public void SetCanvas(Transform canvas)
-    {
-        _canvas = canvas;
-    }
-    
-    public Text GenerateItemName(string name, RareLevel rareLevel)
-    {
-        var text = Instantiate(Resources.Load("Prefabs/WeaponName"), _canvas) as Text;
+    public Text GenerateItemName(Transform canvas, string name, RareLevel rareLevel)
+    {      
+        var go = Instantiate(Resources.Load("Prefabs/WeaponName"),canvas,false) as GameObject;
+        Text text = go.GetComponent<Text>();
         text.text = name;
         switch (rareLevel)
         {
@@ -43,5 +34,9 @@ public class WeaponNameSingleton : SingletonScriptableObject<WeaponNameSingleton
         return text;
     }
 
+    public void Test(Transform canvas)
+    {
+        Instantiate(Resources.Load("Prefabs/WeaponName"), canvas, false);
+    }
 
 }

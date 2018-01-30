@@ -34,10 +34,9 @@ public abstract class Weapon : Item
 
     private void Start()
     {
+        Init();
         DisableEffect();
     }
-
-    public override abstract void Init();
     
     public abstract void TriggerWeapon();
     public abstract void DisableEffect();

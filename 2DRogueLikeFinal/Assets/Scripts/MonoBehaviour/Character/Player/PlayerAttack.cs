@@ -114,11 +114,22 @@ public class PlayerAttack : MonoBehaviour
         }       
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Item"))
         {
             Item = collision.transform;
+            var script = Item.GetComponent<Item>();
+            if (script.itemGuiText)
+            {
+                script.MarkedAsUsable();
+            }
+            else
+            {
+                script.Init();
+                Debug.Log(script.itemGuiText);
+                script.MarkedAsUsable();
+            }
         }
     }
 
@@ -126,6 +137,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.CompareTag("Item"))
         {
+            var script = Item.GetComponent<Item>();
+            if (script.itemGuiText)
+                script.MarkedAsNormal();
             Item = null;
         }
     }

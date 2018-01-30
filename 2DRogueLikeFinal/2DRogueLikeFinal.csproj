@@ -143,6 +143,7 @@
     <Compile Include="Assets\Scripts\MonoBehaviour\SortingOrderSetinStart.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Trap\SimpleTrap.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\Trap\Trap.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviour\UI\CanvasControl.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\UI\FloatingText.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\UI\GuiName.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviour\UI\GUIPlayerHealth.cs" />

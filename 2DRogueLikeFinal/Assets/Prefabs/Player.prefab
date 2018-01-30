@@ -146,6 +146,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1901123874113852
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4928532817066388}
+  m_Layer: 10
+  m_Name: GuiNamePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4181805952197808
 Transform:
   m_ObjectHideFlags: 1
@@ -216,6 +231,19 @@ Transform:
   m_Father: {fileID: 4981760615455088}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4928532817066388
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901123874113852}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.168, y: 0.204, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4981760615455088}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4981760615455088
 Transform:
   m_ObjectHideFlags: 1
@@ -228,6 +256,7 @@ Transform:
   m_Children:
   - {fileID: 4799167880786490}
   - {fileID: 4181805952197808}
+  - {fileID: 4928532817066388}
   m_Father: {fileID: 4518744763881968}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -363,8 +392,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkRange: 3
+  searchRadius: 10
   enemyLayerMask: 0
   weaponTransform: {fileID: 4518744763881968}
+  direction: {x: 0, y: 0}
   weapon: {fileID: 0}
   Item: {fileID: 0}
 --- !u!114 &114582558899361122
@@ -419,6 +450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed68cf5f859ad8946b8015d6a013f11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: AK47
+  rareLevel: 0
+  guiNamePosition: {fileID: 4928532817066388}
+  iteGuiText: {fileID: 0}
   playerIndex: 0
   timerGap: 0.2
   damage: 10
@@ -447,7 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   movement: {x: 0, y: 0}
-  facePosition: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
   isFacingRight: 1
 --- !u!212 &212155128815775332
 SpriteRenderer:
