@@ -20,17 +20,18 @@ public abstract class Item : MonoBehaviour
 
     public virtual void Init()
     {
-        if (!itemGuiText)
+        if (!itemGuiText && itemName.Length>0)
         {
             Transform canvas = GameObject.Find("Canvas").transform;
-            itemGuiText = WeaponNameSingleton.Instance.GenerateItemName(canvas, name, rareLevel);
+            Debug.Log(canvas.childCount);
+            itemGuiText = WeaponNameSingleton.Instance.GenerateItemName(canvas, itemName, rareLevel);
             MarkedAsNormal();
         }
     }
 
     protected void Update()
     {
-        if (itemGuiText)
+        if (itemGuiText && guiNamePosition)
             SetitemGuiTextPosition();      
     }
 
@@ -47,7 +48,8 @@ public abstract class Item : MonoBehaviour
 
     public virtual void MarkedAsUsable()
     {
-        itemGuiText.enabled = true;
+        if (itemGuiText)
+            itemGuiText.enabled = true;
     }
 
     public abstract void Use(Transform player);    

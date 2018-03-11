@@ -947,7 +947,7 @@ MonoBehaviour:
   enemyGameobjectList:
   - {fileID: 1921899622177758, guid: ef12a4a8cc5ee0c4a910ee35cd7cbd3f, type: 2}
   - {fileID: 1384908309916932, guid: 85c4c1c5f635c4f42b94364dc5ea989e, type: 2}
-  player: {fileID: 1659769818777608, guid: b75a384e732bddb4eb81298b169d2a1f, type: 2}
+  player: {fileID: 1659769818777608, guid: 76f80a627dd270249ac5f22c0fe2deae, type: 2}
   lootBox: {fileID: 1051421268358804, guid: 31e57019fc889c646b3409443d7b6136, type: 2}
   door: {fileID: 1493481446690610, guid: f5e7116b4270d9844b56c8abbc42eddb, type: 2}
   playerGenerateEffect: {fileID: 1761686989310902, guid: 65afa275517d45d4f9f9b4a750e59f22,
